@@ -22,6 +22,7 @@
 		998908A11959121F008EAA13 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 998908801959121E008EAA13 /* UIKit.framework */; };
 		998908A91959121F008EAA13 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 998908A71959121F008EAA13 /* InfoPlist.strings */; };
 		998908AB1959121F008EAA13 /* SimpleABTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 998908AA1959121F008EAA13 /* SimpleABTests.m */; };
+		99AF620519591F0D000337C7 /* SimpleAddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 99AF620419591F0D000337C7 /* SimpleAddressBook.m */; };
 		99FCF62119591534007FFE55 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99FCF62019591534007FFE55 /* AddressBook.framework */; };
 		99FCF6231959153B007FFE55 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99FCF6221959153B007FFE55 /* AddressBookUI.framework */; };
 /* End PBXBuildFile section */
@@ -58,6 +59,8 @@
 		998908A61959121F008EAA13 /* SimpleABTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SimpleABTests-Info.plist"; sourceTree = "<group>"; };
 		998908A81959121F008EAA13 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		998908AA1959121F008EAA13 /* SimpleABTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleABTests.m; sourceTree = "<group>"; };
+		99AF620319591F0D000337C7 /* SimpleAddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SimpleAddressBook.h; path = SimpleAddressBook/SimpleAddressBook.h; sourceTree = "<group>"; };
+		99AF620419591F0D000337C7 /* SimpleAddressBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SimpleAddressBook.m; path = SimpleAddressBook/SimpleAddressBook.m; sourceTree = "<group>"; };
 		99FCF62019591534007FFE55 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		99FCF6221959153B007FFE55 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -131,6 +134,7 @@
 				998908941959121E008EAA13 /* SABDetailViewController.h */,
 				998908951959121E008EAA13 /* SABDetailViewController.m */,
 				998908971959121E008EAA13 /* Images.xcassets */,
+				99AF620219591EB8000337C7 /* SimpleABFramework */,
 				998908831959121E008EAA13 /* Supporting Files */,
 			);
 			path = SimpleAB;
@@ -163,6 +167,15 @@
 				998908A71959121F008EAA13 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		99AF620219591EB8000337C7 /* SimpleABFramework */ = {
+			isa = PBXGroup;
+			children = (
+				99AF620319591F0D000337C7 /* SimpleAddressBook.h */,
+				99AF620419591F0D000337C7 /* SimpleAddressBook.m */,
+			);
+			name = SimpleABFramework;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,6 +280,7 @@
 				998908891959121E008EAA13 /* main.m in Sources */,
 				998908931959121E008EAA13 /* SABMasterViewController.m in Sources */,
 				9989088D1959121E008EAA13 /* SABAppDelegate.m in Sources */,
+				99AF620519591F0D000337C7 /* SimpleAddressBook.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
