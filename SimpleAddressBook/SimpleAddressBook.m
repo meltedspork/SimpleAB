@@ -70,4 +70,11 @@
     return (long)[_contactDetailList count];
 }
 
+- (NSString *) firstName:(NSInteger)recordID {
+    ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, NULL);
+    ABRecordRef person = ABAddressBookGetPersonWithRecordID(addressBook, (ABRecordID)recordID);
+    return (__bridge_transfer NSString*)ABRecordCopyValue(person,kABPersonFirstNameProperty);
+    //return kFirstName;
+}
+
 @end

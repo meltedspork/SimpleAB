@@ -13,7 +13,8 @@
 
 @property (strong, nonatomic) NSMutableOrderedSet *contactDetailList;
 
-- (NSMutableOrderedSet *)list;
-- (NSInteger)total;
+- (NSMutableOrderedSet *) list;
+- (NSInteger) total;
+- (NSString *) firstName:(NSInteger)recordID;
 
 @end

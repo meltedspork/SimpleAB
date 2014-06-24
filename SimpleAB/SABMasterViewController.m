@@ -34,9 +34,11 @@
     self.navigationItem.rightBarButtonItem = addButton;
     
     NSLog(@"tester");
-    NSMutableOrderedSet* theList = _simpleAB.list;
+    NSMutableOrderedSet* theList = [_simpleAB list];
     NSLog(@"%@",theList);
-    NSLog(@"%ld",_simpleAB.total);
+    NSLog(@"%ld",[_simpleAB total]);
+    
+    NSLog(@"%@",[_simpleAB firstName:1]);
 }
 
 /*
