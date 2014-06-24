@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SimpleAddressBook.h"
 
-@interface SABMasterViewController : UITableViewController
+@interface SABMasterViewController : UITableViewController <UIApplicationDelegate>
 
 @end

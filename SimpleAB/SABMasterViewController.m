@@ -7,11 +7,12 @@
 //
 
 #import "SABMasterViewController.h"
-
 #import "SABDetailViewController.h"
+
 
 @interface SABMasterViewController () {
     NSMutableArray *_objects;
+    SimpleAddressBook *_simpleAB;
 }
 @end
 
@@ -25,12 +26,27 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _simpleAB = [[SimpleAddressBook alloc] init];
 	// Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
+    
+    NSLog(@"tester");
+    NSMutableOrderedSet* theList = _simpleAB.list;
+    NSLog(@"%@",theList);
+    NSLog(@"%ld",_simpleAB.total);
 }
+
+/*
+- (void)applicationWillEnterForeground:(UIApplication *)application {
+    NSMutableOrderedSet* theList = [SimpleAddressBook contactList];
+    NSLog(@"reloaded!");
+    NSLog(@"%@",theList);
+}
+*/
+
 
 - (void)didReceiveMemoryWarning
 {

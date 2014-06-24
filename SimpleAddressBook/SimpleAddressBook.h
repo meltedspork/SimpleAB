@@ -7,7 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AddressBook/AddressBook.h>
 
 @interface SimpleAddressBook : NSObject
+
+@property (strong, nonatomic) NSMutableOrderedSet *contactDetailList;
+
+- (NSMutableOrderedSet *)list;
+- (NSInteger)total;
 
 @end
