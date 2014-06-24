@@ -1,0 +1,478 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9989087D1959121E008EAA13 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9989087C1959121E008EAA13 /* Foundation.framework */; };
+		9989087F1959121E008EAA13 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9989087E1959121E008EAA13 /* CoreGraphics.framework */; };
+		998908811959121E008EAA13 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 998908801959121E008EAA13 /* UIKit.framework */; };
+		998908871959121E008EAA13 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 998908851959121E008EAA13 /* InfoPlist.strings */; };
+		998908891959121E008EAA13 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 998908881959121E008EAA13 /* main.m */; };
+		9989088D1959121E008EAA13 /* SABAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9989088C1959121E008EAA13 /* SABAppDelegate.m */; };
+		998908901959121E008EAA13 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9989088E1959121E008EAA13 /* Main.storyboard */; };
+		998908931959121E008EAA13 /* SABMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 998908921959121E008EAA13 /* SABMasterViewController.m */; };
+		998908961959121E008EAA13 /* SABDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 998908951959121E008EAA13 /* SABDetailViewController.m */; };
+		998908981959121E008EAA13 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 998908971959121E008EAA13 /* Images.xcassets */; };
+		9989089F1959121F008EAA13 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9989089E1959121F008EAA13 /* XCTest.framework */; };
+		998908A01959121F008EAA13 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9989087C1959121E008EAA13 /* Foundation.framework */; };
+		998908A11959121F008EAA13 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 998908801959121E008EAA13 /* UIKit.framework */; };
+		998908A91959121F008EAA13 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 998908A71959121F008EAA13 /* InfoPlist.strings */; };
+		998908AB1959121F008EAA13 /* SimpleABTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 998908AA1959121F008EAA13 /* SimpleABTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		998908A21959121F008EAA13 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 998908711959121E008EAA13 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 998908781959121E008EAA13;
+			remoteInfo = SimpleAB;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		998908791959121E008EAA13 /* SimpleAB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleAB.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9989087C1959121E008EAA13 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		9989087E1959121E008EAA13 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		998908801959121E008EAA13 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		998908841959121E008EAA13 /* SimpleAB-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SimpleAB-Info.plist"; sourceTree = "<group>"; };
+		998908861959121E008EAA13 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		998908881959121E008EAA13 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9989088A1959121E008EAA13 /* SimpleAB-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SimpleAB-Prefix.pch"; sourceTree = "<group>"; };
+		9989088B1959121E008EAA13 /* SABAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SABAppDelegate.h; sourceTree = "<group>"; };
+		9989088C1959121E008EAA13 /* SABAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SABAppDelegate.m; sourceTree = "<group>"; };
+		9989088F1959121E008EAA13 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		998908911959121E008EAA13 /* SABMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SABMasterViewController.h; sourceTree = "<group>"; };
+		998908921959121E008EAA13 /* SABMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SABMasterViewController.m; sourceTree = "<group>"; };
+		998908941959121E008EAA13 /* SABDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SABDetailViewController.h; sourceTree = "<group>"; };
+		998908951959121E008EAA13 /* SABDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SABDetailViewController.m; sourceTree = "<group>"; };
+		998908971959121E008EAA13 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		9989089D1959121F008EAA13 /* SimpleABTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleABTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9989089E1959121F008EAA13 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		998908A61959121F008EAA13 /* SimpleABTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SimpleABTests-Info.plist"; sourceTree = "<group>"; };
+		998908A81959121F008EAA13 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		998908AA1959121F008EAA13 /* SimpleABTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleABTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		998908761959121E008EAA13 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9989087F1959121E008EAA13 /* CoreGraphics.framework in Frameworks */,
+				998908811959121E008EAA13 /* UIKit.framework in Frameworks */,
+				9989087D1959121E008EAA13 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9989089A1959121F008EAA13 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9989089F1959121F008EAA13 /* XCTest.framework in Frameworks */,
+				998908A11959121F008EAA13 /* UIKit.framework in Frameworks */,
+				998908A01959121F008EAA13 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		998908701959121E008EAA13 = {
+			isa = PBXGroup;
+			children = (
+				998908821959121E008EAA13 /* SimpleAB */,
+				998908A41959121F008EAA13 /* SimpleABTests */,
+				9989087B1959121E008EAA13 /* Frameworks */,
+				9989087A1959121E008EAA13 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9989087A1959121E008EAA13 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				998908791959121E008EAA13 /* SimpleAB.app */,
+				9989089D1959121F008EAA13 /* SimpleABTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9989087B1959121E008EAA13 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9989087C1959121E008EAA13 /* Foundation.framework */,
+				9989087E1959121E008EAA13 /* CoreGraphics.framework */,
+				998908801959121E008EAA13 /* UIKit.framework */,
+				9989089E1959121F008EAA13 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		998908821959121E008EAA13 /* SimpleAB */ = {
+			isa = PBXGroup;
+			children = (
+				9989088B1959121E008EAA13 /* SABAppDelegate.h */,
+				9989088C1959121E008EAA13 /* SABAppDelegate.m */,
+				9989088E1959121E008EAA13 /* Main.storyboard */,
+				998908911959121E008EAA13 /* SABMasterViewController.h */,
+				998908921959121E008EAA13 /* SABMasterViewController.m */,
+				998908941959121E008EAA13 /* SABDetailViewController.h */,
+				998908951959121E008EAA13 /* SABDetailViewController.m */,
+				998908971959121E008EAA13 /* Images.xcassets */,
+				998908831959121E008EAA13 /* Supporting Files */,
+			);
+			path = SimpleAB;
+			sourceTree = "<group>";
+		};
+		998908831959121E008EAA13 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				998908841959121E008EAA13 /* SimpleAB-Info.plist */,
+				998908851959121E008EAA13 /* InfoPlist.strings */,
+				998908881959121E008EAA13 /* main.m */,
+				9989088A1959121E008EAA13 /* SimpleAB-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		998908A41959121F008EAA13 /* SimpleABTests */ = {
+			isa = PBXGroup;
+			children = (
+				998908AA1959121F008EAA13 /* SimpleABTests.m */,
+				998908A51959121F008EAA13 /* Supporting Files */,
+			);
+			path = SimpleABTests;
+			sourceTree = "<group>";
+		};
+		998908A51959121F008EAA13 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				998908A61959121F008EAA13 /* SimpleABTests-Info.plist */,
+				998908A71959121F008EAA13 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		998908781959121E008EAA13 /* SimpleAB */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 998908AE1959121F008EAA13 /* Build configuration list for PBXNativeTarget "SimpleAB" */;
+			buildPhases = (
+				998908751959121E008EAA13 /* Sources */,
+				998908761959121E008EAA13 /* Frameworks */,
+				998908771959121E008EAA13 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SimpleAB;
+			productName = SimpleAB;
+			productReference = 998908791959121E008EAA13 /* SimpleAB.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9989089C1959121F008EAA13 /* SimpleABTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 998908B11959121F008EAA13 /* Build configuration list for PBXNativeTarget "SimpleABTests" */;
+			buildPhases = (
+				998908991959121F008EAA13 /* Sources */,
+				9989089A1959121F008EAA13 /* Frameworks */,
+				9989089B1959121F008EAA13 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				998908A31959121F008EAA13 /* PBXTargetDependency */,
+			);
+			name = SimpleABTests;
+			productName = SimpleABTests;
+			productReference = 9989089D1959121F008EAA13 /* SimpleABTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		998908711959121E008EAA13 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = SAB;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Jason Salerno";
+				TargetAttributes = {
+					9989089C1959121F008EAA13 = {
+						TestTargetID = 998908781959121E008EAA13;
+					};
+				};
+			};
+			buildConfigurationList = 998908741959121E008EAA13 /* Build configuration list for PBXProject "SimpleAB" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 998908701959121E008EAA13;
+			productRefGroup = 9989087A1959121E008EAA13 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				998908781959121E008EAA13 /* SimpleAB */,
+				9989089C1959121F008EAA13 /* SimpleABTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		998908771959121E008EAA13 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				998908981959121E008EAA13 /* Images.xcassets in Resources */,
+				998908871959121E008EAA13 /* InfoPlist.strings in Resources */,
+				998908901959121E008EAA13 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9989089B1959121F008EAA13 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				998908A91959121F008EAA13 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		998908751959121E008EAA13 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				998908961959121E008EAA13 /* SABDetailViewController.m in Sources */,
+				998908891959121E008EAA13 /* main.m in Sources */,
+				998908931959121E008EAA13 /* SABMasterViewController.m in Sources */,
+				9989088D1959121E008EAA13 /* SABAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		998908991959121F008EAA13 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				998908AB1959121F008EAA13 /* SimpleABTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		998908A31959121F008EAA13 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 998908781959121E008EAA13 /* SimpleAB */;
+			targetProxy = 998908A21959121F008EAA13 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		998908851959121E008EAA13 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				998908861959121E008EAA13 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		9989088E1959121E008EAA13 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9989088F1959121E008EAA13 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		998908A71959121F008EAA13 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				998908A81959121F008EAA13 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		998908AC1959121F008EAA13 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		998908AD1959121F008EAA13 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		998908AF1959121F008EAA13 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SimpleAB/SimpleAB-Prefix.pch";
+				INFOPLIST_FILE = "SimpleAB/SimpleAB-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		998908B01959121F008EAA13 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SimpleAB/SimpleAB-Prefix.pch";
+				INFOPLIST_FILE = "SimpleAB/SimpleAB-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		998908B21959121F008EAA13 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SimpleAB.app/SimpleAB";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SimpleAB/SimpleAB-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "SimpleABTests/SimpleABTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		998908B31959121F008EAA13 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SimpleAB.app/SimpleAB";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SimpleAB/SimpleAB-Prefix.pch";
+				INFOPLIST_FILE = "SimpleABTests/SimpleABTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		998908741959121E008EAA13 /* Build configuration list for PBXProject "SimpleAB" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				998908AC1959121F008EAA13 /* Debug */,
+				998908AD1959121F008EAA13 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		998908AE1959121F008EAA13 /* Build configuration list for PBXNativeTarget "SimpleAB" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				998908AF1959121F008EAA13 /* Debug */,
+				998908B01959121F008EAA13 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		998908B11959121F008EAA13 /* Build configuration list for PBXNativeTarget "SimpleABTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				998908B21959121F008EAA13 /* Debug */,
+				998908B31959121F008EAA13 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 998908711959121E008EAA13 /* Project object */;
+}
