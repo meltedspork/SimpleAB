@@ -12,10 +12,18 @@
 
 @synthesize simpleABSet = _simpleAB;
 
-- (NSMutableDictionary *) list {
-    if (!_simpleAB) {
+- (id)init {
+    self = [super init];
+    if (self) {
+        // Initialize self.
         _simpleAB = [[NSMutableDictionary alloc]init];
     }
+    return self;
+}
+- (NSMutableDictionary *) list {
+  /*  if (!_simpleAB) {
+        _simpleAB = [[NSMutableDictionary alloc]init];
+    }*/
     NSMutableOrderedSet *contactDetailList = [[NSMutableOrderedSet alloc]init];
     
     if ([self.checkSimpleAB valueForKeyPath:@"ACCESS"]) {
@@ -58,33 +66,43 @@
 }
 
 - (NSInteger) total {
-    return (long)[[_simpleAB valueForKeyPath:@"LIST"][0] count];
+    return (long)[[_simpleAB valueForKeyPath:@"LIST"] count];
 }
 
 - (NSString *) firstName:(NSInteger)recordID {
-    ABRecordRef person = [self SABRecordRef:recordID];
+    if ((long)[_simpleAB valueForKeyPath:@"RecID"] != recordID) {
+        [self SABRecordRef:recordID];
+    }
+    ABRecordRef person = (__bridge ABAddressBookRef)([self.checkSimpleAB valueForKeyPath:@"SABPerson"]);
     return (__bridge_transfer NSString*)ABRecordCopyValue(person,kABPersonFirstNameProperty);
 }
 
 - (NSString *) lastName:(NSInteger)recordID {
-    ABRecordRef person = [self SABRecordRef:recordID];
+    if ((long)[_simpleAB valueForKeyPath:@"RecID"] != recordID) {
+        [self SABRecordRef:recordID];
+    }
+    ABRecordRef person = (__bridge ABAddressBookRef)([self.checkSimpleAB valueForKeyPath:@"SABPerson"]);
     return (__bridge_transfer NSString*)ABRecordCopyValue(person,kABPersonLastNameProperty);
 }
 
 - (NSString *) birthDay:(NSInteger)recordID {
-    ABRecordRef person = [self SABRecordRef:recordID];
+    if ((long)[_simpleAB valueForKeyPath:@"RecID"] != recordID) {
+        [self SABRecordRef:recordID];
+    }
+    ABRecordRef person = (__bridge ABAddressBookRef)([self.checkSimpleAB valueForKeyPath:@"SABPerson"]);
     return (__bridge_transfer NSString*)ABRecordCopyValue(person,kABPersonBirthdayProperty);
 }
 
-- (ABRecordRef) SABRecordRef:(long)recordID {
+- (void) SABRecordRef:(long)recordID {
+    
     ABAddressBookRef addressBook = (__bridge ABAddressBookRef)([self.checkSimpleAB valueForKeyPath:@"SABRef"]);
-    return ABAddressBookGetPersonWithRecordID(addressBook, (ABRecordID)recordID);
+    
+    ABRecordRef person = ABAddressBookGetPersonWithRecordID(addressBook, (ABRecordID)recordID);
+    [_simpleAB setValue:[NSNumber numberWithInteger:recordID] forKey:@"RecID"];
+    [_simpleAB setObject:(__bridge id)(person) forKey:@"SABPerson"];
 }
 
 - (NSMutableDictionary *) checkSimpleAB {
-    if (!_simpleAB) {
-        _simpleAB = [[NSMutableDictionary alloc]init];
-    }
     __block BOOL userDidGrantAddressBookAccess;
     CFErrorRef abError = NULL;
     
