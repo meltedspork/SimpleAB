@@ -10,25 +10,16 @@
 
 @implementation SimpleAddressBook
 
-@synthesize contactDetailList = _contactDetailList;
+@synthesize simpleABSet = _simpleAB;
 
-- (NSMutableOrderedSet *) list {
-    _contactDetailList = [[NSMutableOrderedSet alloc]init];
+- (NSMutableDictionary *) list {
+    if (!_simpleAB) {
+        _simpleAB = [[NSMutableDictionary alloc]init];
+    }
+    NSMutableOrderedSet *contactDetailList = [[NSMutableOrderedSet alloc]init];
     
-    __block BOOL userDidGrantAddressBookAccess;
-    CFErrorRef addressBookError = NULL;
-    
-    if ( ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusNotDetermined ||
-        ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusAuthorized ) {
-        
-        ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, &addressBookError);
-
-        dispatch_semaphore_t sema = dispatch_semaphore_create(0);
-        ABAddressBookRequestAccessWithCompletion(addressBook, ^(bool granted, CFErrorRef error){
-            userDidGrantAddressBookAccess = granted;
-            dispatch_semaphore_signal(sema);
-        });
-        dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+    if ([self.checkSimpleAB valueForKeyPath:@"ACCESS"]) {
+        ABAddressBookRef addressBook = (__bridge ABAddressBookRef)([self.checkSimpleAB valueForKeyPath:@"SABRef"]);
         
         //ABRecordRef source = ABAddressBookCopyArrayOfAllSources(addressBook);
         ABRecordRef source = ABAddressBookCopyDefaultSource(addressBook);
@@ -51,30 +42,74 @@
             [contactFullList setValue:kFirstName forKey:@"FIRST"];
             [contactFullList setValue:kLastName forKey:@"LAST"];
             [contactFullList setValue:recordId forKey:@"ID"];
-
-            [_contactDetailList addObject:contactFullList];
+            
+            [contactDetailList addObject:contactFullList];
+            [_simpleAB setObject:contactDetailList forKey:@"LIST"];
         }
         CFRelease(addressBook);
         CFRelease(source);
+
     } else {
-        if ( ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusDenied ||
-            ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusRestricted ) {
-            // Display an error.
-            [_contactDetailList setValue:@"Not authorizated to access Contact" forKey:@"ERROR"];
-        }
+
+        // Display an error.
+        [_simpleAB setValue:@"DENIED" forKey:@"ERROR"];
     }
-    return _contactDetailList;
+    return [_simpleAB valueForKeyPath:@"LIST"];
 }
 
 - (NSInteger) total {
-    return (long)[_contactDetailList count];
+    return (long)[[_simpleAB valueForKeyPath:@"LIST"][0] count];
 }
 
 - (NSString *) firstName:(NSInteger)recordID {
-    ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, NULL);
-    ABRecordRef person = ABAddressBookGetPersonWithRecordID(addressBook, (ABRecordID)recordID);
+    ABRecordRef person = [self SABRecordRef:recordID];
     return (__bridge_transfer NSString*)ABRecordCopyValue(person,kABPersonFirstNameProperty);
-    //return kFirstName;
+}
+
+- (NSString *) lastName:(NSInteger)recordID {
+    ABRecordRef person = [self SABRecordRef:recordID];
+    return (__bridge_transfer NSString*)ABRecordCopyValue(person,kABPersonLastNameProperty);
+}
+
+- (NSString *) birthDay:(NSInteger)recordID {
+    ABRecordRef person = [self SABRecordRef:recordID];
+    return (__bridge_transfer NSString*)ABRecordCopyValue(person,kABPersonBirthdayProperty);
+}
+
+- (ABRecordRef) SABRecordRef:(long)recordID {
+    ABAddressBookRef addressBook = (__bridge ABAddressBookRef)([self.checkSimpleAB valueForKeyPath:@"SABRef"]);
+    return ABAddressBookGetPersonWithRecordID(addressBook, (ABRecordID)recordID);
+}
+
+- (NSMutableDictionary *) checkSimpleAB {
+    if (!_simpleAB) {
+        _simpleAB = [[NSMutableDictionary alloc]init];
+    }
+    __block BOOL userDidGrantAddressBookAccess;
+    CFErrorRef abError = NULL;
+    
+    if ( ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusNotDetermined ||
+        ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusAuthorized ) {
+        
+        ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, &abError);
+        
+        dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+        ABAddressBookRequestAccessWithCompletion(addressBook, ^(bool granted, CFErrorRef error){
+            userDidGrantAddressBookAccess = granted;
+            dispatch_semaphore_signal(sema);
+        });
+        dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+        
+        [_simpleAB setObject:(__bridge id)(addressBook) forKey:@"SABRef"];
+        [_simpleAB setValue:[NSNumber numberWithBool:YES] forKey:@"ACCESS"];
+    } else {
+        if ( ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusDenied ||
+            ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusRestricted ) {
+            [_simpleAB setValue:@"Not authorizated to access Contact" forKey:@"Reason"];
+            [_simpleAB setValue:[NSNumber numberWithBool:NO] forKey:@"ACCESS"];
+        }
+    }
+    return _simpleAB;
 }
 
 @end

@@ -35,10 +35,12 @@
     
     NSLog(@"tester");
     NSMutableOrderedSet* theList = [_simpleAB list];
-    NSLog(@"%@",theList);
-    NSLog(@"%ld",[_simpleAB total]);
+    NSLog(@"List: %@",theList);
+    NSLog(@"Total: %ld",[_simpleAB total]);
     
-    NSLog(@"%@",[_simpleAB firstName:1]);
+    NSLog(@"First Name: %@",[_simpleAB firstName:1]);
+    NSLog(@"Last Name: %@",[_simpleAB lastName:1]);
+    NSLog(@"Birthday: %@",[_simpleAB birthDay:1]);
 }
 
 /*

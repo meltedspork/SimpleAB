@@ -11,10 +11,12 @@
 
 @interface SimpleAddressBook : NSObject
 
-@property (strong, nonatomic) NSMutableOrderedSet *contactDetailList;
+@property (strong, nonatomic) NSMutableDictionary *simpleABSet;
 
 - (NSMutableOrderedSet *) list;
 - (NSInteger) total;
 - (NSString *) firstName:(NSInteger)recordID;
+- (NSString *) lastName:(NSInteger)recordID;
+- (NSString *) birthDay:(NSInteger)recordID;
 
 @end
