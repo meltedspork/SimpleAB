@@ -179,6 +179,10 @@
     return [self modificationDate:[[_simpleAB valueForKeyPath:@"RecordID"]intValue]];
 }
 
+- (NSMutableDictionary *) email {
+    return [self email:[[_simpleAB valueForKeyPath:@"RecordID"]intValue]];
+}
+
 
 // returns
 - (NSString *) prefix:(NSInteger)recordID {
