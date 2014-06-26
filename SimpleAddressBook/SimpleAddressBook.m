@@ -110,11 +110,9 @@
 }
 
 - (void) setRecordID:(NSInteger)recordID {
-    // NSLog(@"CHECK: %ld",(long)recordID);
     if (recordID != 0) {
         [_simpleAB setValue:[NSNumber numberWithInteger:recordID] forKey:@"RecordID"];
     }
-    //NSLog(@"CHECK: %d",[[_simpleAB valueForKeyPath:@"RecordID"] intValue]);
 }
 
 - (NSString *) prefix {
@@ -250,7 +248,21 @@
 
 
 //const ABPropertyID kABPersonEmailProperty;
+- (NSMutableDictionary *) email:(NSInteger)recordID {
+    NSMutableDictionary *emailList = [[NSMutableDictionary alloc] init];
+    
+    ABMultiValueRef emails = ABRecordCopyValue([self checkRecordID:recordID],kABPersonEmailProperty);
+    
+    if (ABMultiValueGetCount(emails) > 0) {
+        for (int i=0; i < ABMultiValueGetCount(emails); i++) {
 
+            [emailList setValue:[[NSString alloc] initWithFormat:@"%@",ABAddressBookCopyLocalizedLabel(ABMultiValueCopyLabelAtIndex(emails,i))] forKey:[[NSString alloc] initWithFormat:@"%@",(__bridge_transfer NSString*)ABMultiValueCopyValueAtIndex(emails, i)]];
+        }
+    }
+
+    CFRelease(emails);
+    return emailList;
+}
 
 
 @end

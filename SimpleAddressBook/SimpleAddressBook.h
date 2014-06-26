@@ -52,4 +52,6 @@
 - (NSString *) createDate:(NSInteger)recordID;
 - (NSString *) modificationDate:(NSInteger)recordID;
 
+- (NSMutableDictionary *) email:(NSInteger)recordID;
+
 @end
