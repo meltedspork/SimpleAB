@@ -33,14 +33,23 @@
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
     
-    NSLog(@"tester");
-    NSMutableOrderedSet* theList = [_simpleAB list];
-    NSLog(@"List: %@",theList);
+    NSLog(@"-------------------------------------");
+    NSLog(@"List: %@",[_simpleAB list]);
     NSLog(@"Total: %ld",[_simpleAB total]);
     
-    NSLog(@"First Name: %@",[_simpleAB firstName:1]);
-    NSLog(@"Last Name: %@",[_simpleAB lastName:1]);
-    NSLog(@"Birthday: %@",[_simpleAB birthDay:1]);
+    NSLog(@"------------ method with recordID----------------");
+    NSLog(@"[_simpleAB firstName:1]: %@",[_simpleAB firstName:1]);
+    NSLog(@"[_simpleAB middleName:1]: %@",[_simpleAB middleName:1]);
+    NSLog(@"[_simpleAB lastName:1]: %@",[_simpleAB lastName:1]);
+    NSLog(@"[_simpleAB birthday:1]: %@",[_simpleAB birthday:1]);
+    
+    NSLog(@"------------ method with setRecordID----------------");
+    [_simpleAB setRecordID:2];
+    NSLog(@"[_simpleAB setRecordID:2]");
+    NSLog(@"[_simpleAB firstName]: %@",[_simpleAB firstName]);
+    NSLog(@"[_simpleAB middleName]: %@",[_simpleAB middleName]);
+    NSLog(@"[_simpleAB lastName]: %@",[_simpleAB lastName]);
+    NSLog(@"[_simpleAB birthday]: %@",[_simpleAB birthday]);
 }
 
 /*

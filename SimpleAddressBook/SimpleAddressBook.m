@@ -21,9 +21,6 @@
     return self;
 }
 - (NSMutableDictionary *) list {
-  /*  if (!_simpleAB) {
-        _simpleAB = [[NSMutableDictionary alloc]init];
-    }*/
     NSMutableOrderedSet *contactDetailList = [[NSMutableOrderedSet alloc]init];
     
     if ([self.checkSimpleAB valueForKeyPath:@"ACCESS"]) {
@@ -69,36 +66,18 @@
     return (long)[[_simpleAB valueForKeyPath:@"LIST"] count];
 }
 
-- (NSString *) firstName:(NSInteger)recordID {
-    if ((long)[_simpleAB valueForKeyPath:@"RecID"] != recordID) {
+- (ABRecordRef) checkRecordID:(long)recordID {
+    if ((long)[_simpleAB valueForKeyPath:@"RecordID"] != recordID) {
         [self SABRecordRef:recordID];
     }
-    ABRecordRef person = (__bridge ABAddressBookRef)([self.checkSimpleAB valueForKeyPath:@"SABPerson"]);
-    return (__bridge_transfer NSString*)ABRecordCopyValue(person,kABPersonFirstNameProperty);
-}
-
-- (NSString *) lastName:(NSInteger)recordID {
-    if ((long)[_simpleAB valueForKeyPath:@"RecID"] != recordID) {
-        [self SABRecordRef:recordID];
-    }
-    ABRecordRef person = (__bridge ABAddressBookRef)([self.checkSimpleAB valueForKeyPath:@"SABPerson"]);
-    return (__bridge_transfer NSString*)ABRecordCopyValue(person,kABPersonLastNameProperty);
-}
-
-- (NSString *) birthDay:(NSInteger)recordID {
-    if ((long)[_simpleAB valueForKeyPath:@"RecID"] != recordID) {
-        [self SABRecordRef:recordID];
-    }
-    ABRecordRef person = (__bridge ABAddressBookRef)([self.checkSimpleAB valueForKeyPath:@"SABPerson"]);
-    return (__bridge_transfer NSString*)ABRecordCopyValue(person,kABPersonBirthdayProperty);
+    return (__bridge ABAddressBookRef)([self.checkSimpleAB valueForKeyPath:@"SABPerson"]);
 }
 
 - (void) SABRecordRef:(long)recordID {
-    
     ABAddressBookRef addressBook = (__bridge ABAddressBookRef)([self.checkSimpleAB valueForKeyPath:@"SABRef"]);
     
     ABRecordRef person = ABAddressBookGetPersonWithRecordID(addressBook, (ABRecordID)recordID);
-    [_simpleAB setValue:[NSNumber numberWithInteger:recordID] forKey:@"RecID"];
+    [_simpleAB setValue:[NSNumber numberWithInteger:recordID] forKey:@"RecordID"];
     [_simpleAB setObject:(__bridge id)(person) forKey:@"SABPerson"];
 }
 
@@ -128,6 +107,47 @@
         }
     }
     return _simpleAB;
+}
+
+- (void) setRecordID:(NSInteger)recordID {
+    // NSLog(@"CHECK: %ld",(long)recordID);
+    if (recordID != 0) {
+        [_simpleAB setValue:[NSNumber numberWithInteger:recordID] forKey:@"RecordID"];
+    }
+    //NSLog(@"CHECK: %d",[[_simpleAB valueForKeyPath:@"RecordID"] intValue]);
+}
+
+- (NSString *) firstName {
+    return [self firstName:[[_simpleAB valueForKeyPath:@"RecordID"] intValue]];
+}
+
+- (NSString *) middleName {
+        return [self middleName:[[_simpleAB valueForKeyPath:@"RecordID"] intValue]];
+}
+
+- (NSString *) lastName {
+    return [self lastName:[[_simpleAB valueForKeyPath:@"RecordID"]intValue]];
+}
+
+- (NSString *) birthday {
+    return [self birthday:[[_simpleAB valueForKeyPath:@"RecordID"]intValue]];
+}
+
+// returns
+- (NSString *) firstName:(NSInteger)recordID {
+    return (__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonFirstNameProperty);
+}
+
+- (NSString *) middleName:(NSInteger)recordID {
+    return (__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonMiddleNameProperty);
+}
+
+- (NSString *) lastName:(NSInteger)recordID {
+    return (__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonLastNameProperty);
+}
+
+- (NSString *) birthday:(NSInteger)recordID {
+    return (__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonBirthdayProperty);
 }
 
 @end

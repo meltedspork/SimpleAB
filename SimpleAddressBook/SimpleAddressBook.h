@@ -15,8 +15,17 @@
 
 - (NSMutableOrderedSet *) list;
 - (NSInteger) total;
+
+- (void) setRecordID:(NSInteger)recordID;
+
+- (NSString *) firstName;
+- (NSString *) middleName;
+- (NSString *) lastName;
+- (NSString *) birthday;
+
 - (NSString *) firstName:(NSInteger)recordID;
+- (NSString *) middleName:(NSInteger)recordID;
 - (NSString *) lastName:(NSInteger)recordID;
-- (NSString *) birthDay:(NSInteger)recordID;
+- (NSString *) birthday:(NSInteger)recordID;
 
 @end
