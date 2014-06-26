@@ -12,12 +12,12 @@ This is very early stage but I aim to make this library very easy to import (yes
 _simpleAB = [[SimpleAddressBook alloc] init];
 
 
-NSLog(@"%ld",_simpleAB.total); // returns the total of contacts (including linked cards)
+NSLog(@"%ld",[_simpleAB total]); // returns the total of contacts (including linked cards)
 
 ```
 
 ```
-NSLog(@"%@", _simpleAB.list); // returns all contacts (including linked cards)
+NSLog(@"%@", [_simpleAB list]); // returns all contacts (including linked cards)
 ```
 
 ###List of methods that you can ue..
