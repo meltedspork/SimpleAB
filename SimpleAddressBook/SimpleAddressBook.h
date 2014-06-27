@@ -52,6 +52,9 @@
 - (NSString *) createDate:(NSInteger)recordID;
 - (NSString *) modificationDate:(NSInteger)recordID;
 
+- (UIImage *) image;
+- (UIImage *) image:(NSInteger)recordID;
+
 - (NSMutableDictionary *) email;
 - (NSMutableDictionary *) email:(NSInteger)recordID;
 

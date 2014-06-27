@@ -179,6 +179,10 @@
     return [self modificationDate:[[_simpleAB valueForKeyPath:@"RecordID"]intValue]];
 }
 
+- (UIImage *) image {
+    return [self image:[[_simpleAB valueForKeyPath:@"RecordID"]intValue]];
+}
+
 - (NSMutableDictionary *) email {
     return [self email:[[_simpleAB valueForKeyPath:@"RecordID"]intValue]];
 }
@@ -249,6 +253,9 @@
     return (__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonModificationDateProperty)? nil : @"";
 }
 
+- (UIImage *) image:(NSInteger)recordID {
+    return [UIImage imageWithData:(__bridge_transfer NSData *)ABPersonCopyImageData([self checkRecordID:recordID])];
+}
 
 
 //const ABPropertyID kABPersonEmailProperty;
@@ -267,6 +274,5 @@
     CFRelease(emails);
     return emailList;
 }
-
 
 @end
