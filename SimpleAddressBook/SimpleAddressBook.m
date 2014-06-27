@@ -81,6 +81,10 @@
     [_simpleAB setObject:(__bridge id)(person) forKey:@"SABPerson"];
 }
 
+- (NSString *) checkNil:(NSString *) abString {
+    return abString ? nil : @"";
+}
+
 - (NSMutableDictionary *) checkSimpleAB {
     __block BOOL userDidGrantAddressBookAccess;
     CFErrorRef abError = NULL;
@@ -186,67 +190,67 @@
 
 // returns
 - (NSString *) prefix:(NSInteger)recordID {
-    return (__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonPrefixProperty)? nil : @"";
+    return [self checkNil:(__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonPrefixProperty)];
 }
 
 - (NSString *) firstName:(NSInteger)recordID {
-    return (__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonFirstNameProperty)? nil : @"";
+    return [self checkNil:(__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonFirstNameProperty)];
 }
 
 - (NSString *) middleName:(NSInteger)recordID {
-    return (__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonMiddleNameProperty)? nil : @"";
+    return [self checkNil:(__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonMiddleNameProperty)];
 }
 
 - (NSString *) lastName:(NSInteger)recordID {
-    return (__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonLastNameProperty)? nil : @"";
+    return [self checkNil:(__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonLastNameProperty)];
 }
 
 - (NSString *) suffix:(NSInteger)recordID {
-    return (__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonSuffixProperty)? nil : @"";
+    return [self checkNil:(__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonSuffixProperty)];
 }
 
 - (NSString *) nickName:(NSInteger)recordID {
-    return (__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonNicknameProperty)? nil : @"";
+    return [self checkNil:(__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonNicknameProperty)];
 }
 
 - (NSString *) firstNamePhonetic:(NSInteger)recordID {
-    return (__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonFirstNamePhoneticProperty)? nil : @"";
+    return [self checkNil:(__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonFirstNamePhoneticProperty)];
 }
 
 - (NSString *) middleNamePhonetic:(NSInteger)recordID {
-    return (__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonMiddleNamePhoneticProperty)? nil : @"";
+    return [self checkNil:(__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonMiddleNamePhoneticProperty)];
 }
 
 - (NSString *) lastNamePhonetic:(NSInteger)recordID {
-    return (__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonLastNamePhoneticProperty)? nil : @"";
+    return [self checkNil:(__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonLastNamePhoneticProperty)];
 }
 
 - (NSString *) organization:(NSInteger)recordID {
-    return (__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonOrganizationProperty)? nil : @"";
+    return [self checkNil:(__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonOrganizationProperty)];
 }
 
 - (NSString *) jobTitle:(NSInteger)recordID {
-    return (__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonJobTitleProperty)? nil : @"";
+    return [self checkNil:(__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonJobTitleProperty)];
 }
 
 - (NSString *) department:(NSInteger)recordID {
-    return (__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonDepartmentProperty)? nil : @"";
+    return [self checkNil:(__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonDepartmentProperty)];
 }
 
 - (NSString *) birthday:(NSInteger)recordID {
-    return (__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonBirthdayProperty)? nil : @"";
+    return [self checkNil:(__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonBirthdayProperty)];
 }
 
 - (NSString *) note:(NSInteger)recordID {
-    return (__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonNoteProperty)? nil : @"";
+    return [self checkNil:(__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonNoteProperty)];
 }
 
 - (NSString *) createDate:(NSInteger)recordID {
-    return (__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonCreationDateProperty)? nil : @"";
+    return [self checkNil:(__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonCreationDateProperty)];
 }
 
 - (NSString *) modificationDate:(NSInteger)recordID {
-    return (__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonModificationDateProperty)? nil : @"";
+    return [self checkNil:(__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonModificationDateProperty)];
 }
 
 
