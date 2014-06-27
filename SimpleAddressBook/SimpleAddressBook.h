@@ -34,6 +34,10 @@
 - (NSString *) note;
 - (NSString *) createDate;
 - (NSString *) modificationDate;
+- (UIImage *) image;
+- (NSMutableDictionary *) email;
+- (NSMutableDictionary *) phoneNumber;
+- (NSMutableDictionary *) address;
 
 - (NSString *) prefix:(NSInteger)recordID;
 - (NSString *) firstName:(NSInteger)recordID;
@@ -51,11 +55,9 @@
 - (NSString *) note:(NSInteger)recordID;
 - (NSString *) createDate:(NSInteger)recordID;
 - (NSString *) modificationDate:(NSInteger)recordID;
-
-- (UIImage *) image;
 - (UIImage *) image:(NSInteger)recordID;
-
-- (NSMutableDictionary *) email;
 - (NSMutableDictionary *) email:(NSInteger)recordID;
+- (NSMutableDictionary *) phoneNumber:(NSInteger)recordID;
+- (NSMutableDictionary *) address:(NSInteger)recordID;
 
 @end

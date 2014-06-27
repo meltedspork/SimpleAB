@@ -187,6 +187,14 @@
     return [self email:[[_simpleAB valueForKeyPath:@"RecordID"]intValue]];
 }
 
+- (NSMutableDictionary *) phoneNumber {
+    return [self phoneNumber:[[_simpleAB valueForKeyPath:@"RecordID"]intValue]];
+}
+
+- (NSMutableDictionary *) address {
+    return [self address:[[_simpleAB valueForKeyPath:@"RecordID"]intValue]];
+}
+
 
 // returns
 - (NSString *) prefix:(NSInteger)recordID {
@@ -257,22 +265,82 @@
     return [UIImage imageWithData:(__bridge_transfer NSData *)ABPersonCopyImageData([self checkRecordID:recordID])];
 }
 
+- (NSMutableDictionary *) phoneNumber:(NSInteger)recordID {
+    NSMutableDictionary *phoneNumbers = [[NSMutableDictionary alloc] init];
+    
+    ABMultiValueRef phoneRecord = ABRecordCopyValue([self checkRecordID:recordID],            kABPersonPhoneProperty);
+    
+    if (ABMultiValueGetCount(phoneRecord) > 0) {
+        for (int i=0; i < ABMultiValueGetCount(phoneRecord); i++) {
+            
+            [phoneNumbers setValue:[[NSString alloc] initWithFormat:@"%@",ABAddressBookCopyLocalizedLabel( ABMultiValueCopyLabelAtIndex( phoneRecord,i))] forKey:[[NSString alloc] initWithFormat:@"%@",ABAddressBookCopyLocalizedLabel( ABMultiValueCopyLabelAtIndex( phoneRecord,i))]];
+            CFRelease(ABAddressBookCopyLocalizedLabel( ABMultiValueCopyLabelAtIndex( phoneRecord,i)));
+            
+        }
+    }
+    
+    CFRelease(phoneRecord);
+    return phoneNumbers;
+}
 
-//const ABPropertyID kABPersonEmailProperty;
 - (NSMutableDictionary *) email:(NSInteger)recordID {
-    NSMutableDictionary *emailList = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *emails = [[NSMutableDictionary alloc] init];
     
-    ABMultiValueRef emails = ABRecordCopyValue([self checkRecordID:recordID],kABPersonEmailProperty);
+    ABMultiValueRef emailRecord = ABRecordCopyValue([self checkRecordID:recordID],kABPersonEmailProperty);
     
-    if (ABMultiValueGetCount(emails) > 0) {
-        for (int i=0; i < ABMultiValueGetCount(emails); i++) {
+    if (ABMultiValueGetCount(ABRecordCopyValue([self checkRecordID:recordID],kABPersonEmailProperty)) > 0) {
+        for (int i=0; i < ABMultiValueGetCount(emailRecord); i++) {
 
-            [emailList setValue:[[NSString alloc] initWithFormat:@"%@",ABAddressBookCopyLocalizedLabel(ABMultiValueCopyLabelAtIndex(emails,i))] forKey:[[NSString alloc] initWithFormat:@"%@",(__bridge_transfer NSString*)ABMultiValueCopyValueAtIndex(emails, i)]];
+            [emails setValue:[[NSString alloc] initWithFormat:@"%@",ABAddressBookCopyLocalizedLabel(ABMultiValueCopyLabelAtIndex(emailRecord,i))] forKey:[[NSString alloc] initWithFormat:@"%@",(__bridge_transfer NSString*)ABMultiValueCopyValueAtIndex(emailRecord, i)]];
         }
     }
 
-    CFRelease(emails);
-    return emailList;
+    CFRelease(emailRecord);
+    return emails;
 }
+
+- (NSMutableDictionary *) address:(NSInteger)recordID {
+    NSMutableDictionary *addresses = [[NSMutableDictionary alloc] init];
+    
+    ABMultiValueRef addressRecord = ABRecordCopyValue([self checkRecordID:recordID], kABPersonAddressProperty);
+    
+    if (ABMultiValueGetCount(addressRecord) > 0) {
+        for (int i=0; i < ABMultiValueGetCount(addressRecord); i++) {
+            NSMutableDictionary * fullAddress = [[NSMutableDictionary alloc] init];
+            
+            CFDictionaryRef dictRef = ABMultiValueCopyValueAtIndex(addressRecord,i);
+            
+            if ((__bridge_transfer NSString*)CFDictionaryGetValue(dictRef, kABPersonAddressStreetKey) != nil) {
+                
+                [fullAddress setValue:[[NSString alloc] initWithFormat:@"%@", (__bridge_transfer NSString*)CFDictionaryGetValue(dictRef, kABPersonAddressStreetKey)] forKey:@"STREET"];
+            }
+            if ((__bridge_transfer NSString*)CFDictionaryGetValue(dictRef, kABPersonAddressCityKey) != nil) {
+                
+                [fullAddress setValue:[[NSString alloc] initWithFormat:@"%@",(__bridge_transfer NSString*)CFDictionaryGetValue(dictRef,kABPersonAddressCityKey)] forKey:@"CITY"];
+            }
+            if ((__bridge_transfer NSString*)CFDictionaryGetValue(dictRef, kABPersonAddressStateKey) != nil) {
+        
+                [fullAddress setValue:[[NSString alloc] initWithFormat:@"%@",(__bridge_transfer NSString*)CFDictionaryGetValue(dictRef, kABPersonAddressStateKey)] forKey:@"STATE"];
+            }
+            if ((__bridge_transfer NSString*)CFDictionaryGetValue(dictRef, kABPersonAddressZIPKey) != nil) {
+                
+                [fullAddress setValue:[[NSString alloc] initWithFormat:@"%@",(__bridge_transfer NSString*)CFDictionaryGetValue(dictRef, kABPersonAddressZIPKey)] forKey:@"ZIP"];
+            }
+            if ((__bridge_transfer NSString*)CFDictionaryGetValue(dictRef, kABPersonAddressCountryKey) != nil) {
+                
+                [fullAddress setValue:[[NSString alloc] initWithFormat:@"%@",(__bridge_transfer NSString*)CFDictionaryGetValue(dictRef, kABPersonAddressCountryKey)] forKey:@"COUNTRY"];
+            }
+            //NSLog(@"fullAddress:%@",fullAddress);
+            
+            /* NSString *kAddress = [[NSString alloc] initWithFormat:@"%@",(__bridge_transfer NSString*)ABMultiValueCopyValueAtIndex(address, i)];*/
+            [addresses setValue:fullAddress forKey:[[NSString alloc] initWithFormat:@"%@",ABAddressBookCopyLocalizedLabel( ABMultiValueCopyLabelAtIndex( addressRecord,i))]];
+            CFRelease(dictRef);
+            //if(!dictRef) CFRelease(dictRef);
+        }
+    }
+    CFRelease(addressRecord);
+    return addresses;
+}
+
 
 @end
