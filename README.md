@@ -20,8 +20,15 @@ NSLog(@"%ld",[_simpleAB total]); // returns the total of contacts (including lin
 NSLog(@"%@", [_simpleAB list]); // returns all contacts (including linked cards)
 ```
 
-###List of methods that you can ue..
+###List of methods that you can use..
 ```
+- (NSMutableOrderedSet *) list;
+- (NSInteger) total;
+
+
+// an method to define record ID for the methods without parameters
+- (void) setRecordID:(NSInteger)recordID;
+
 - (NSString *) prefix;
 - (NSString *) firstName;
 - (NSString *) middleName;
@@ -39,6 +46,7 @@ NSLog(@"%@", [_simpleAB list]); // returns all contacts (including linked cards)
 - (NSString *) createDate;
 - (NSString *) modificationDate;
 
+// for an method with record ID as parameter
 - (NSString *) prefix:(NSInteger)recordID;
 - (NSString *) firstName:(NSInteger)recordID;
 - (NSString *) middleName:(NSInteger)recordID;
