@@ -74,7 +74,7 @@
         #pragma unused(list)
     }
     //NSLog(@"%@",[_simpleAB valueForKeyPath:@"LIST"]);
-    NSSortDescriptor *nameSort = [[NSSortDescriptor alloc] initWithKey:@"FIRSTNAME" ascending:YES selector:@selector(compare:)];
+    NSSortDescriptor *nameSort = [[NSSortDescriptor alloc] initWithKey:@"LASTNAME" ascending:YES selector:@selector(compare:)];
     NSArray *sortDescriptors = [NSArray arrayWithObject:nameSort];
     NSArray *sortedArray = [[_simpleAB valueForKeyPath:@"LIST"] sortedArrayUsingDescriptors:sortDescriptors];
     return sortedArray;
