@@ -20,8 +20,9 @@
     }
     return self;
 }
-- (NSMutableDictionary *) list {
-    NSMutableOrderedSet *contactDetailList = [[NSMutableOrderedSet alloc]init];
+
+- (NSOrderedSet *) list {
+    NSMutableOrderedSet *mSets = [[NSMutableOrderedSet alloc]init];
     
     if ([self.checkSimpleAB valueForKeyPath:@"ACCESS"]) {
         ABAddressBookRef addressBook = (__bridge ABAddressBookRef)([self.checkSimpleAB valueForKeyPath:@"SABRef"]);
@@ -35,17 +36,22 @@
         for( int j = 0 ; j < arr.count ; j++ ) {
             ABRecordRef ref = (__bridge ABRecordRef)[arr objectAtIndex:j];
 
+            
+            NSString* kFirstName = (__bridge_transfer NSString *)ABRecordCopyValue(ref,kABPersonFirstNameProperty);
+            NSString* kLastName = (__bridge_transfer NSString*)ABRecordCopyValue(ref,kABPersonLastNameProperty);
+            NSString* kFirstCharLastName = [[kLastName substringToIndex:1] uppercaseString];
+
             NSNumber *recordId = [NSNumber numberWithInteger: ABRecordGetRecordID(ref)];
             
             NSMutableDictionary *contactFullList = [[NSMutableDictionary alloc] init];
             
-            [contactFullList setValue:[[[self firstName:[recordId intValue]] substringToIndex:1] uppercaseString]  forKey:@"HEADER"];
-            [contactFullList setValue:[self firstName:[recordId intValue]] forKey:@"FIRSTNAME"];
-            [contactFullList setValue:[self firstName:[recordId intValue]] forKey:@"LASTNAME"];
+            [contactFullList setValue:kFirstCharLastName forKey:@"HEADER"];
+            [contactFullList setValue:kFirstName forKey:@"FIRSTNAME"];
+            [contactFullList setValue:kLastName forKey:@"LASTNAME"];
             [contactFullList setValue:recordId forKey:@"ID"];
             
-            [contactDetailList addObject:contactFullList];
-            [_simpleAB setObject:contactDetailList forKey:@"LIST"];
+            [mSets addObject:contactFullList];
+            [_simpleAB setObject:mSets forKey:@"LIST"];
         }
         CFRelease(addressBook);
         CFRelease(source);
@@ -55,7 +61,23 @@
         // Display an error.
         [_simpleAB setValue:@"DENIED" forKey:@"ERROR"];
     }
-    return [_simpleAB valueForKeyPath:@"LIST"];
+    NSOrderedSet *sets = [[NSOrderedSet alloc] init];
+    sets = [[_simpleAB valueForKeyPath:@"LIST"] copy];
+    return sets;
+    //return [_simpleAB valueForKeyPath:@"LIST"];
+}
+
+//- (NSArray *) showList:(NSOrderedSet *)sets {
+- (NSArray *) showList {
+    if ([_simpleAB valueForKeyPath:@"LIST"] == nil) {
+        NSOrderedSet *list = self.list;
+        #pragma unused(list)
+    }
+    //NSLog(@"%@",[_simpleAB valueForKeyPath:@"LIST"]);
+    NSSortDescriptor *nameSort = [[NSSortDescriptor alloc] initWithKey:@"FIRSTNAME" ascending:YES selector:@selector(compare:)];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:nameSort];
+    NSArray *sortedArray = [[_simpleAB valueForKeyPath:@"LIST"] sortedArrayUsingDescriptors:sortDescriptors];
+    return sortedArray;
 }
 
 - (NSInteger) total {

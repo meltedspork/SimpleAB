@@ -14,6 +14,8 @@
 @property (strong, nonatomic) NSMutableDictionary *simpleABSet;
 
 - (NSMutableOrderedSet *) list;
+- (NSArray *) showList;
+//- (NSArray *) showList:(NSOrderedSet *)sets;
 - (NSInteger) total;
 
 - (void) setRecordID:(NSInteger)recordID;
