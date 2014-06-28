@@ -35,17 +35,13 @@
         for( int j = 0 ; j < arr.count ; j++ ) {
             ABRecordRef ref = (__bridge ABRecordRef)[arr objectAtIndex:j];
 
-            NSString* kFirstName = (__bridge_transfer NSString *)ABRecordCopyValue(ref,kABPersonFirstNameProperty);
-            NSString* kLastName = (__bridge_transfer NSString*)ABRecordCopyValue(ref,kABPersonLastNameProperty);
-            NSString* kFirstCharLastName = [[kLastName substringToIndex:1] uppercaseString];
-
             NSNumber *recordId = [NSNumber numberWithInteger: ABRecordGetRecordID(ref)];
             
             NSMutableDictionary *contactFullList = [[NSMutableDictionary alloc] init];
             
-            [contactFullList setValue:kFirstCharLastName forKey:@"HEADER"];
-            [contactFullList setValue:kFirstName forKey:@"FIRST"];
-            [contactFullList setValue:kLastName forKey:@"LAST"];
+            [contactFullList setValue:[[[self firstName:[recordId intValue]] substringToIndex:1] uppercaseString]  forKey:@"HEADER"];
+            [contactFullList setValue:[self firstName:[recordId intValue]] forKey:@"FIRSTNAME"];
+            [contactFullList setValue:[self firstName:[recordId intValue]] forKey:@"LASTNAME"];
             [contactFullList setValue:recordId forKey:@"ID"];
             
             [contactDetailList addObject:contactFullList];
