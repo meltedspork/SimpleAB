@@ -30,11 +30,23 @@
 	// Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    self.navigationItem.rightBarButtonItem = addButton;
+   // UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
+    //self.navigationItem.rightBarButtonItem = addButton;
     
-    NSLog(@"-------------------------");
-    NSLog(@"List: %@",[_simpleAB list]);
+    //NSLog(@"-------------------------");
+    //NSLog(@"List: %@",[_simpleAB list]);
+    // [_simpleAB list];
+
+    /*
+    NSSortDescriptor *nameSort = [[NSSortDescriptor alloc] initWithKey:@"LASTNAME" ascending:YES selector:@selector(compare:)];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:nameSort];
+    _objects2 = [[_simpleAB list] sortedArrayUsingDescriptors:sortDescriptors];
+     */
+
+    //NSLog(@"showList: %@",[_simpleAB showList]);
+    _objects = [[_simpleAB showList] mutableCopy];
+    NSLog(@"%@",_objects);
+    /*
     NSLog(@"Total: %ld",[_simpleAB total]);
     
     NSLog(@"------------ method with recordID");
@@ -53,6 +65,7 @@
     
     NSLog(@"------------ method with setRecordID");
     NSLog(@"Email: %@",[_simpleAB email:1]);
+     */
 }
 
 /*
@@ -70,6 +83,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+/*
 - (void)insertNewObject:(id)sender
 {
     if (!_objects) {
@@ -79,7 +93,7 @@
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
-
+*/
 #pragma mark - Table View
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -96,17 +110,17 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
-    NSDate *object = _objects[indexPath.row];
-    cell.textLabel.text = [object description];
+    NSString *object = [_objects[indexPath.row] valueForKeyPath:@"FIRSTNAME"];
+    cell.textLabel.text = object; //[object description];
     return cell;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
-    return YES;
+    return NO;
 }
-
+/*
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
@@ -116,6 +130,9 @@
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
     }
 }
+ */
+
+
 
 /*
 // Override to support rearranging the table view.
