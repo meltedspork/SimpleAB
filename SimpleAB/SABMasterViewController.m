@@ -110,8 +110,9 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
-    NSString *object = [_objects[indexPath.row] valueForKeyPath:@"FIRSTNAME"];
-    cell.textLabel.text = object; //[object description];
+    NSString *firstName = [_objects[indexPath.row] valueForKeyPath:@"FIRSTNAME"];
+    NSString *lastName = [_objects[indexPath.row] valueForKeyPath:@"LASTNAME"];
+    cell.textLabel.text = [NSString stringWithFormat: @"%@ %@", firstName, lastName];
     return cell;
 }
 
