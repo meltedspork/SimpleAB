@@ -201,15 +201,15 @@
     return [self image:[[_simpleAB valueForKeyPath:@"RecordID"]intValue]];
 }
 
-- (NSMutableDictionary *) email {
+- (NSDictionary *) email {
     return [self email:[[_simpleAB valueForKeyPath:@"RecordID"]intValue]];
 }
 
-- (NSMutableDictionary *) phoneNumber {
+- (NSDictionary *) phoneNumber {
     return [self phoneNumber:[[_simpleAB valueForKeyPath:@"RecordID"]intValue]];
 }
 
-- (NSMutableDictionary *) address {
+- (NSDictionary *) address {
     return [self address:[[_simpleAB valueForKeyPath:@"RecordID"]intValue]];
 }
 
@@ -283,7 +283,7 @@
     return [UIImage imageWithData:(__bridge_transfer NSData *)ABPersonCopyImageData([self checkRecordID:recordID])];
 }
 
-- (NSMutableDictionary *) phoneNumber:(NSInteger)recordID {
+- (NSDictionary *) phoneNumber:(NSInteger)recordID {
     NSMutableDictionary *phoneNumbers = [[NSMutableDictionary alloc] init];
     
     ABMultiValueRef phoneRecord = ABRecordCopyValue([self checkRecordID:recordID],            kABPersonPhoneProperty);
@@ -298,10 +298,12 @@
     }
     
     CFRelease(phoneRecord);
-    return phoneNumbers;
+    NSDictionary *phones = [[NSDictionary alloc] init];
+    phones = [phoneNumbers copy];
+    return phones;
 }
 
-- (NSMutableDictionary *) email:(NSInteger)recordID {
+- (NSDictionary *) email:(NSInteger)recordID {
     NSMutableDictionary *emails = [[NSMutableDictionary alloc] init];
     
     ABMultiValueRef emailRecord = ABRecordCopyValue([self checkRecordID:recordID],kABPersonEmailProperty);
@@ -314,10 +316,12 @@
     }
 
     CFRelease(emailRecord);
-    return emails;
+    NSDictionary *email = [[NSDictionary alloc] init];
+    email = [emails copy];
+    return email;
 }
 
-- (NSMutableDictionary *) address:(NSInteger)recordID {
+- (NSDictionary *) address:(NSInteger)recordID {
     NSMutableDictionary *addresses = [[NSMutableDictionary alloc] init];
     
     ABMultiValueRef addressRecord = ABRecordCopyValue([self checkRecordID:recordID], kABPersonAddressProperty);
@@ -357,7 +361,9 @@
         }
     }
     CFRelease(addressRecord);
-    return addresses;
+    NSDictionary *address = [[NSDictionary alloc] init];
+    address = [addresses copy];
+    return address;
 }
 
 

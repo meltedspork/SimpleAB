@@ -37,9 +37,9 @@
 - (NSString *) createDate;
 - (NSString *) modificationDate;
 - (UIImage *) image;
-- (NSMutableDictionary *) email;
-- (NSMutableDictionary *) phoneNumber;
-- (NSMutableDictionary *) address;
+- (NSDictionary *) email;
+- (NSDictionary *) phoneNumber;
+- (NSDictionary *) address;
 
 - (NSString *) prefix:(NSInteger)recordID;
 - (NSString *) firstName:(NSInteger)recordID;
@@ -58,8 +58,8 @@
 - (NSString *) createDate:(NSInteger)recordID;
 - (NSString *) modificationDate:(NSInteger)recordID;
 - (UIImage *) image:(NSInteger)recordID;
-- (NSMutableDictionary *) email:(NSInteger)recordID;
-- (NSMutableDictionary *) phoneNumber:(NSInteger)recordID;
-- (NSMutableDictionary *) address:(NSInteger)recordID;
+- (NSDictionary *) email:(NSInteger)recordID;
+- (NSDictionary *) phoneNumber:(NSInteger)recordID;
+- (NSDictionary *) address:(NSInteger)recordID;
 
 @end
