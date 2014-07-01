@@ -127,6 +127,10 @@
     return _simpleAB;
 }
 
+-(void) getRecord:(NSInteger)recordID {
+    
+}
+
 - (void) setRecordID:(NSInteger)recordID {
     if (recordID != 0) {
         [_simpleAB setValue:[NSNumber numberWithInteger:recordID] forKey:@"RecordID"];
