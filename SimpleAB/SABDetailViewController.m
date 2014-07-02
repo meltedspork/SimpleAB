@@ -7,9 +7,11 @@
 //
 
 #import "SABDetailViewController.h"
+#import "SimpleAddressBook.h"
 
 @interface SABDetailViewController ()
-- (void)configureView;
+    - (void)configureView;
+    @property (nonatomic, strong) SimpleAddressBook *simpleAB;
 @end
 
 @implementation SABDetailViewController
@@ -18,6 +20,9 @@
 
 - (void)setDetailItem:(id)newDetailItem
 {
+    self.simpleAB = [[SimpleAddressBook alloc] init];
+    [[self simpleAB] getRecord:3];
+
     if (_detailItem != newDetailItem) {
         _detailItem = newDetailItem;
         
@@ -31,6 +36,7 @@
     // Update the user interface for the detail item.
 
     if (self.detailItem) {
+        NSLog(@"%@",_simpleAB.firstName);
         self.detailDescriptionLabel.text = [self.detailItem description];
     }
 }
