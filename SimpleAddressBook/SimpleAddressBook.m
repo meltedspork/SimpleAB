@@ -33,17 +33,31 @@
     NSMutableOrderedSet *mSets = [[NSMutableOrderedSet alloc]init];
     //NSLog(@"_simpleABSet: %@",_simpleABSet);
     if ([_simpleABSet valueForKeyPath:@"ACCESS"]) {
+        /*
+         CFArrayRef allPeople = ABAddressBookCopyArrayOfAllPeopleInSourceWithSortOrdering(addressBook, nil, kABPersonSortByLastName);
+         
+         CFIndex nPeople = ABAddressBookGetPersonCount(addressBook);
+         
+         for (int i = 0; i < nPeople; i++) {
+         ABRecordRef person = CFArrayGetValueAtIndex(allPeople, i);
+        */
+        
+        
         ABAddressBookRef addressBook = (__bridge ABAddressBookRef)([_simpleABSet valueForKeyPath:@"SABRef"]);
         
         //ABRecordRef source = ABAddressBookCopyArrayOfAllSources(addressBook);
-        ABRecordRef source = ABAddressBookCopyDefaultSource(addressBook);
-            // or get the source with ABPersonCopySource(somePersonsABRecordRef);
+        ABRecordRef source = ABAddressBookCopyArrayOfAllSources(addressBook);
+        // or get the source with ABPersonCopySource(somePersonsABRecordRef);
+        //ABRecordRef source = ABAddressBookCopyArrayOfAllPeople(addressBook);
         
-        NSArray *arr = (__bridge_transfer NSArray *)ABAddressBookCopyArrayOfAllPeopleInSourceWithSortOrdering(addressBook, source, kABPersonSortByLastName);
+        //ABAddressBookRef addressBook = ABAddressBookCreate();
+        //CFArrayRef source = ABAddressBookCopyArrayOfAllPeople(addressBook);
+        
+        //NSArray *arr = (__bridge_transfer NSArray *)ABAddressBookCopyArrayOfAllPeopleInSourceWithSortOrdering(addressBook, source, kABPersonSortByLastName);
+        NSArray *arr = (__bridge_transfer NSArray *)ABAddressBookCopyArrayOfAllPeopleInSourceWithSortOrdering(addressBook, nil, kABPersonSortByLastName);
         
         for( int j = 0 ; j < arr.count ; j++ ) {
             ABRecordRef ref = (__bridge ABRecordRef)[arr objectAtIndex:j];
-
             
             NSString* kFirstName = (__bridge_transfer NSString *)ABRecordCopyValue(ref,kABPersonFirstNameProperty);
             NSString* kLastName = (__bridge_transfer NSString*)ABRecordCopyValue(ref,kABPersonLastNameProperty);
@@ -57,6 +71,16 @@
             [contactFullList setValue:kLastName forKey:@"LASTNAME"];
             [contactFullList setValue:recordId forKey:@"ID"];
             
+            NSArray *linkedRecordsArray = (__bridge NSArray *)ABPersonCopyArrayOfAllLinkedPeople(ref);
+            
+            NSLog(@"linked %@: %@",recordId,linkedRecordsArray);
+            for( int k = 0 ; k < linkedRecordsArray.count ; k++ ) {
+                NSNumber *lrecord = [NSNumber numberWithInteger: ABRecordGetRecordID((__bridge ABRecordRef)(linkedRecordsArray[k]))];
+                NSLog(@"linked %@: %@",recordId,lrecord);
+            }
+            
+          // [contactFullList setObject:linkedRecordsArray forKey:"LINKED"];
+            
             [mSets addObject:contactFullList];
             [_simpleABSet setObject:mSets forKey:@"LIST"];
         }
@@ -69,6 +93,7 @@
     }
     NSOrderedSet *sets = [[NSOrderedSet alloc] init];
     sets = [[_simpleABSet valueForKeyPath:@"LIST"] copy];
+    NSLog(@"sets: %@",sets);
     return sets;
     //return [_simpleABSet valueForKeyPath:@"LIST"];
 }
@@ -94,7 +119,7 @@
     //NSLog(@"checked! %@",[NSString stringWithFormat:@"%ld", recordID]);
     //NSLog(@"check old value %@",[_simpleABPerson valueForKeyPath:@"Record"]);
     if (![[_simpleABPerson valueForKeyPath:@"Record"] isEqualToString:[NSString stringWithFormat:@"%ld", recordID]]) {
-        NSLog(@"not same");
+        //NSLog(@"not same");
         ABAddressBookRef addressBook = (__bridge ABAddressBookRef)([_simpleABPerson valueForKeyPath:@"SABRef"]);
         
         ABRecordRef person = ABAddressBookGetPersonWithRecordID(addressBook, (ABRecordID)recordID);

@@ -32,7 +32,7 @@
 	// Do any additional setup after loading the view, typically from a nib.
 
     self.simpleAB = [[SimpleAddressBook alloc] init];
-    NSLog(@"first: %@",[self.simpleAB firstName:[_recordID intValue]]);
+    //NSLog(@"first: %@",[self.simpleAB firstName:[_recordID intValue]]);
     self.detailDescriptionLabel.text = [self.simpleAB firstName:[_recordID intValue]];
     
 }
