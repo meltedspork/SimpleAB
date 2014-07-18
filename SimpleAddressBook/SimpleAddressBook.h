@@ -12,13 +12,16 @@
 @interface SimpleAddressBook : NSObject
 
 @property (strong, nonatomic) NSMutableDictionary *simpleABSet;
+@property (strong, nonatomic) NSMutableDictionary *simpleABPerson;
 
 - (NSMutableOrderedSet *) list;
 - (NSArray *) showList;
 //- (NSArray *) showList:(NSOrderedSet *)sets;
 - (NSInteger) total;
 
--(void) getRecord:(NSInteger)recordID;
+//-(void) getRecord:(NSInteger)recordID;
+/*
+@property (nonatomic) NSInteger recordID;
 @property (strong, nonatomic) NSString *prefix;
 @property (strong, nonatomic) NSString *firstName;
 @property (strong, nonatomic) NSString *middleName;
@@ -61,9 +64,11 @@
 - (NSDictionary *) email;
 - (NSDictionary *) phoneNumber;
 - (NSDictionary *) address;
+*/
 
-- (NSString *) prefix:(NSInteger)recordID;
+//- (NSString *) prefix:(NSInteger)recordID;
 - (NSString *) firstName:(NSInteger)recordID;
+
 - (NSString *) middleName:(NSInteger)recordID;
 - (NSString *) lastName:(NSInteger)recordID;
 - (NSString *) suffix:(NSInteger)recordID;

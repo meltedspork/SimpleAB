@@ -35,7 +35,7 @@
     
     //NSLog(@"-------------------------");
     //NSLog(@"List: %@",[_simpleAB list]);
-    // [_simpleAB list];
+    //[_simpleAB list];
 
     /*
     NSSortDescriptor *nameSort = [[NSSortDescriptor alloc] initWithKey:@"LASTNAME" ascending:YES selector:@selector(compare:)];
@@ -44,17 +44,17 @@
      */
 
     //NSLog(@"showList: %@",[_simpleAB showList]);
-    _objects = [[_simpleAB showList] mutableCopy];
-    NSLog(@"%@",_objects);
-    /*
-    NSLog(@"Total: %ld",[_simpleAB total]);
+    //_objects = [[_simpleAB showList] mutableCopy];
+    //NSLog(@"%@",_objects);
     
+    //NSLog(@"Total: %ld",[_simpleAB total]);
+
     NSLog(@"------------ method with recordID");
     NSLog(@"[_simpleAB firstName:1]: %@",[_simpleAB firstName:1]);
     NSLog(@"[_simpleAB middleName:1]: %@",[_simpleAB middleName:1]);
     NSLog(@"[_simpleAB lastName:1]: %@",[_simpleAB lastName:1]);
     NSLog(@"[_simpleAB birthday:1]: %@",[_simpleAB birthday:1]);
-    
+/*
     NSLog(@"------------ method with setRecordID");
     [_simpleAB setRecordID:2];
     NSLog(@"[_simpleAB setRecordID:2]");
@@ -156,7 +156,9 @@
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         NSNumber *recordID = [_objects[indexPath.row] valueForKeyPath:@"ID"];
-        [[segue destinationViewController] setDetailItem:recordID];
+        //[[segue destinationViewController] setDetailItem:recordID];
+        SABDetailViewController *SABDetail = (SABDetailViewController *)[segue destinationViewController];
+        SABDetail.recordID = [recordID stringValue];
     }
 }
 

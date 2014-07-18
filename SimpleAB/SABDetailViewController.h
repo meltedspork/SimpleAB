@@ -11,6 +11,7 @@
 @interface SABDetailViewController : UIViewController
 
 @property (strong, nonatomic) id detailItem;
+@property (strong, nonatomic) NSString *recordID;
 
 @property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 @end

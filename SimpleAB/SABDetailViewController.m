@@ -10,25 +10,28 @@
 #import "SimpleAddressBook.h"
 
 @interface SABDetailViewController ()
-    - (void)configureView;
+   // - (void)configureView;
     @property (nonatomic, strong) SimpleAddressBook *simpleAB;
 @end
 
 @implementation SABDetailViewController
 
-#pragma mark - Managing the detail item
+@synthesize recordID = _recordID;
 
+#pragma mark - Managing the detail item
+/*
 - (void)setDetailItem:(id)newDetailItem
 {
-    self.simpleAB = [[SimpleAddressBook alloc] init];
-    [[self simpleAB] getRecord:3];
+    //[[self simpleAB] getRecord:3];
 
     if (_detailItem != newDetailItem) {
         _detailItem = newDetailItem;
         
         // Update the view.
-        [self configureView];
+        //[self configureView];
+        [self setPersonSAB:[[self.detailItem description] intValue]];
     }
+
 }
 
 - (void)configureView
@@ -36,16 +39,31 @@
     // Update the user interface for the detail item.
 
     if (self.detailItem) {
-        NSLog(@"%@",_simpleAB.firstName);
         self.detailDescriptionLabel.text = [self.detailItem description];
+        [self setPersonSAB:[[self.detailItem description] intValue]];
     }
+}*/
+/*
+- (void)setPersonSAB: (int)recoredID {
+    self.simpleAB = [[SimpleAddressBook alloc] init];
+    [[self simpleAB] getRecord:recoredID];
+    NSLog(@"First Name: %@",_simpleAB.firstName);
 }
-
+*/
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    [self configureView];
+
+    //[self configureView];
+    self.simpleAB = [[SimpleAddressBook alloc] init];
+    ////[[self simpleAB] setRecordID:[_recordID intValue]];
+   // NSLog(@"First Name: %@",_simpleAB.firstName);
+    //NSLog(@"First Name: %@",_simpleAB.firstName);
+   // NSLog(@"[_simpleAB firstName:1]: %@",[_simpleAB firstName:1]);
+    //[self setPersonSAB:[[self.detailItem description] intValue]];
+   // NSLog(@"%d",_recordID);
+    
 }
 
 - (void)didReceiveMemoryWarning
