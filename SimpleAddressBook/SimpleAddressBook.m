@@ -9,29 +9,29 @@
 #import "SimpleAddressBook.h"
 
 @interface SimpleAddressBook ()
-  //  @property (nonatomic, strong) SimpleAddressBook *simpleAB;
+    @property (nonatomic, strong) SimpleAddressBook *simpleAB;
 @end
 
 @implementation SimpleAddressBook
 
 @synthesize simpleABSet = _simpleABSet;
 @synthesize simpleABPerson = _simpleABPerson;
-//@synthesize recordID = _recordID;
 
 - (id)init {
     self = [super init];
     if (self) {
         // Initialize self.
         _simpleABSet = [[NSMutableDictionary alloc]init];
+        _simpleABSet = [self checkSimpleAB:_simpleABSet];
         _simpleABPerson = [[NSMutableDictionary alloc]init];
-        _simpleABPerson = [self checkSimpleAB];
+        _simpleABPerson = [self checkSimpleAB:_simpleABPerson];
     }
     return self;
 }
 
 - (NSOrderedSet *) list {
     NSMutableOrderedSet *mSets = [[NSMutableOrderedSet alloc]init];
-    
+    //NSLog(@"_simpleABSet: %@",_simpleABSet);
     if ([_simpleABSet valueForKeyPath:@"ACCESS"]) {
         ABAddressBookRef addressBook = (__bridge ABAddressBookRef)([_simpleABSet valueForKeyPath:@"SABRef"]);
         
@@ -48,7 +48,6 @@
             NSString* kFirstName = (__bridge_transfer NSString *)ABRecordCopyValue(ref,kABPersonFirstNameProperty);
             NSString* kLastName = (__bridge_transfer NSString*)ABRecordCopyValue(ref,kABPersonLastNameProperty);
             NSString* kFirstCharLastName = [[kLastName substringToIndex:1] uppercaseString];
-
             NSNumber *recordId = [NSNumber numberWithInteger: ABRecordGetRecordID(ref)];
             
             NSMutableDictionary *contactFullList = [[NSMutableDictionary alloc] init];
@@ -65,7 +64,6 @@
         CFRelease(source);
 
     } else {
-
         // Display an error.
         [_simpleABSet setValue:@"DENIED" forKey:@"ERROR"];
     }
@@ -78,7 +76,7 @@
 //- (NSArray *) showList:(NSOrderedSet *)sets {
 - (NSArray *) showList {
     if ([_simpleABSet valueForKeyPath:@"LIST"] == nil) {
-        NSOrderedSet *list = self.list;
+        NSOrderedSet *list = [self list];
         #pragma unused(list)
     }
     //NSLog(@"%@",[_simpleABSet valueForKeyPath:@"LIST"]);
@@ -104,7 +102,6 @@
         [_simpleABPerson setObject:(__bridge id)(person) forKey:@"SABPerson"];
         [_simpleABPerson setValue:[NSNumber numberWithInteger:recordID] forKey:@"RecordID"];
         [_simpleABPerson setValue:[NSString stringWithFormat:@"%ld", recordID] forKey:@"Record"];
-        [_simpleABPerson setValue:@"pass" forKey:@"test"];
         //NSLog(@"_simpleABPerson2: %@",_simpleABPerson);
         
         return person;
@@ -113,7 +110,7 @@
     return (__bridge ABAddressBookRef)([_simpleABPerson valueForKeyPath:@"SABPerson"]);
 }
 
-- (NSMutableDictionary *) checkSimpleAB {
+- (NSMutableDictionary *) checkSimpleAB:(NSMutableDictionary*)SABDict {
     __block BOOL userDidGrantAddressBookAccess;
     CFErrorRef abError = NULL;
     
@@ -129,27 +126,27 @@
         });
         dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
         
-        [_simpleABPerson setObject:(__bridge id)(addressBook) forKey:@"SABRef"];
-        [_simpleABPerson setValue:@"try" forKey:@"test"];
-        [_simpleABPerson setValue:[NSNumber numberWithBool:YES] forKey:@"ACCESS"];
+        [SABDict setObject:(__bridge id)(addressBook) forKey:@"SABRef"];
+        [SABDict setValue:[NSNumber numberWithBool:YES] forKey:@"ACCESS"];
     } else {
         if ( ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusDenied ||
             ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusRestricted ) {
-            [_simpleABPerson setValue:@"Not authorizated to access Contact" forKey:@"Reason"];
-            [_simpleABPerson setValue:[NSNumber numberWithBool:NO] forKey:@"ACCESS"];
+            [SABDict setValue:@"Not authorizated to access Contact" forKey:@"Reason"];
+            [SABDict setValue:[NSNumber numberWithBool:NO] forKey:@"ACCESS"];
         }
     }
-    //NSLog(@"_simpleABPerson1: %@",_simpleABPerson);
-    return _simpleABPerson;
+    //NSLog(@"SABDict: %@",SABDict);
+    return SABDict;
 }
 
-/*
+/* TO DO :: Try to create setter/getter
 -(void) getRecord:(NSInteger)recordID {
-    NSLog(@"%ld",(long)recordID);
+    NSLog(@"getR: %ld",(long)recordID);
     _simpleAB = [[SimpleAddressBook alloc] init];
     [self setRecordID:recordID];
-    _simpleAB.prefix = [self prefix:recordID];
+   // _simpleAB.prefix = [self prefix:recordID];
     _simpleAB.firstName = [self firstName:recordID];
+    NSLog(@"%@",_simpleAB.firstName);
     _simpleAB.middleName = [self middleName:recordID];
     _simpleAB.lastName = [self lastName:recordID];
     _simpleAB.suffix = [self suffix:recordID];
@@ -168,99 +165,8 @@
     _simpleAB.email = [self email:recordID];
     _simpleAB.phoneNumber = [self phoneNumber:recordID];
     _simpleAB.address = [self address:recordID];
-    
 }
-*/
-/*
-- (void) setRecordID:(NSInteger)recordID {
-    if (recordID != 0) {
-        [_simpleABPerson setValue:[NSNumber numberWithInteger:recordID] forKey:@"RecordID"];
-        _recordID = recordID;
-    }
-}
-
-- (NSString *) prefix {
-    return [self prefix:[[_simpleABPerson valueForKeyPath:@"RecordID"] intValue]];
-}
-
-- (NSString *) firstName {
-    NSLog(@"found: %@",[_simpleABPerson valueForKeyPath:@"RecordID"]);
-    NSLog(@"fn: %@",[self firstName:[[_simpleABSet valueForKeyPath:@"RecordID"] intValue]]);
-    return [self firstName:[[_simpleABSet valueForKeyPath:@"RecordID"] intValue]];
-}
-
-- (NSString *) middleName {
-        return [self middleName:[[_simpleABPerson valueForKeyPath:@"RecordID"] intValue]];
-}
-
-- (NSString *) lastName {
-    return [self lastName:[[_simpleABPerson valueForKeyPath:@"RecordID"]intValue]];
-}
-
-- (NSString *) suffix {
-    return [self suffix:[[_simpleABPerson valueForKeyPath:@"RecordID"]intValue]];
-}
-
-- (NSString *) nickName {
-    return [self nickName:[[_simpleABPerson valueForKeyPath:@"RecordID"]intValue]];
-}
-
-- (NSString *) firstNamePhonetic {
-    return [self firstNamePhonetic:[[_simpleABPerson valueForKeyPath:@"RecordID"]intValue]];
-}
-
-- (NSString *) middleNamePhonetic {
-    return [self middleNamePhonetic:[[_simpleABPerson valueForKeyPath:@"RecordID"]intValue]];
-}
-
-- (NSString *) lastNamePhonetic {
-    return [self lastNamePhonetic:[[_simpleABPerson valueForKeyPath:@"RecordID"]intValue]];
-}
-
-- (NSString *) organization {
-    return [self organization:[[_simpleABPerson valueForKeyPath:@"RecordID"]intValue]];
-}
-
-- (NSString *) jobTitle {
-    return [self jobTitle:[[_simpleABPerson valueForKeyPath:@"RecordID"]intValue]];
-}
-
-- (NSString *) department {
-    return [self department:[[_simpleABPerson valueForKeyPath:@"RecordID"]intValue]];
-}
-
-- (NSString *) birthday {
-    return [self birthday:[[_simpleABPerson valueForKeyPath:@"RecordID"]intValue]];
-}
-
-- (NSString *) note {
-    return [self note:[[_simpleABPerson valueForKeyPath:@"RecordID"]intValue]];
-}
-
-- (NSString *) createDate {
-    return [self createDate:[[_simpleABPerson valueForKeyPath:@"RecordID"]intValue]];
-}
-
-- (NSString *) modificationDate {
-    return [self modificationDate:[[_simpleABPerson valueForKeyPath:@"RecordID"]intValue]];
-}
-
-- (UIImage *) image {
-    return [self image:[[_simpleABPerson valueForKeyPath:@"RecordID"]intValue]];
-}
-
-- (NSDictionary *) email {
-    return [self email:[[_simpleABPerson valueForKeyPath:@"RecordID"]intValue]];
-}
-
-- (NSDictionary *) phoneNumber {
-    return [self phoneNumber:[[_simpleABPerson valueForKeyPath:@"RecordID"]intValue]];
-}
-
-- (NSDictionary *) address {
-    return [self address:[[_simpleABPerson valueForKeyPath:@"RecordID"]intValue]];
-}
-*/
+ */
 
 // returns
 

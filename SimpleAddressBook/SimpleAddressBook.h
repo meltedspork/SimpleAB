@@ -20,11 +20,11 @@
 - (NSInteger) total;
 
 //-(void) getRecord:(NSInteger)recordID;
-/*
-@property (nonatomic) NSInteger recordID;
-@property (strong, nonatomic) NSString *prefix;
-@property (strong, nonatomic) NSString *firstName;
-@property (strong, nonatomic) NSString *middleName;
+
+//@property (nonatomic) NSInteger recordID;
+//@property (strong, nonatomic) NSString *prefix;
+//@property (strong, nonatomic) NSString *firstName;
+/*@property (strong, nonatomic) NSString *middleName;
 @property (strong, nonatomic) NSString *lastName;
 @property (strong, nonatomic) NSString *suffix;
 @property (strong, nonatomic) NSString *nickName;
@@ -42,31 +42,9 @@
 @property (strong, nonatomic) NSDictionary *email;
 @property (strong, nonatomic) NSDictionary *phoneNumber;
 @property (strong, nonatomic) NSDictionary *address;
-
-- (void) setRecordID:(NSInteger)recordID;
-- (NSString *) prefix;
-- (NSString *) firstName;
-- (NSString *) middleName;
-- (NSString *) lastName;
-- (NSString *) suffix;
-- (NSString *) nickName;
-- (NSString *) firstNamePhonetic;
-- (NSString *) middleNamePhonetic;
-- (NSString *) lastNamePhonetic;
-- (NSString *) organization;
-- (NSString *) jobTitle;
-- (NSString *) department;
-- (NSString *) birthday;
-- (NSString *) note;
-- (NSString *) createDate;
-- (NSString *) modificationDate;
-- (UIImage *) image;
-- (NSDictionary *) email;
-- (NSDictionary *) phoneNumber;
-- (NSDictionary *) address;
 */
 
-//- (NSString *) prefix:(NSInteger)recordID;
+- (NSString *) prefix:(NSInteger)recordID;
 - (NSString *) firstName:(NSInteger)recordID;
 
 - (NSString *) middleName:(NSInteger)recordID;
