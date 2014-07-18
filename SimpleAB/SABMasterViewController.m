@@ -44,28 +44,22 @@
      */
 
     //NSLog(@"showList: %@",[_simpleAB showList]);
-    //_objects = [[_simpleAB showList] mutableCopy];
-    //NSLog(@"%@",_objects);
+    _objects = [[_simpleAB showList] mutableCopy];
+    //NSLog(@"_objects: %@",_objects);
     
     //NSLog(@"Total: %ld",[_simpleAB total]);
-
+    /*
     NSLog(@"------------ method with recordID");
     NSLog(@"[_simpleAB firstName:1]: %@",[_simpleAB firstName:1]);
     NSLog(@"[_simpleAB middleName:1]: %@",[_simpleAB middleName:1]);
     NSLog(@"[_simpleAB lastName:1]: %@",[_simpleAB lastName:1]);
     NSLog(@"[_simpleAB birthday:1]: %@",[_simpleAB birthday:1]);
-/*
-    NSLog(@"------------ method with setRecordID");
-    [_simpleAB setRecordID:2];
-    NSLog(@"[_simpleAB setRecordID:2]");
-    NSLog(@"[_simpleAB firstName]: %@",[_simpleAB firstName]);
-    NSLog(@"[_simpleAB middleName]: %@",[_simpleAB middleName]);
-    NSLog(@"[_simpleAB lastName]: %@",[_simpleAB lastName]);
-    NSLog(@"[_simpleAB birthday]: %@",[_simpleAB birthday]);
-    
-    NSLog(@"------------ method with setRecordID");
     NSLog(@"Email: %@",[_simpleAB email:1]);
-     */
+    
+    NSLog(@"------------ method with setRecordID");*/
+    //[_simpleAB getRecord:2];
+    //NSLog(@"_simpleAB.firstName: %@",_simpleAB.firstName);
+    
 }
 
 /*
@@ -131,7 +125,7 @@
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
     }
 }
- */
+*/
 
 
 
