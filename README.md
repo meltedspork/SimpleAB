@@ -27,24 +27,6 @@ NSLog(@"%@", [_simpleAB list]); // returns all contacts (including linked cards)
 
 
 // an method to define record ID for the methods without parameters
-- (void) setRecordID:(NSInteger)recordID;
-
-- (NSString *) prefix;
-- (NSString *) firstName;
-- (NSString *) middleName;
-- (NSString *) lastName;
-- (NSString *) suffix;
-- (NSString *) nickName;
-- (NSString *) firstNamePhonetic;
-- (NSString *) middleNamePhonetic;
-- (NSString *) lastNamePhonetic;
-- (NSString *) organization;
-- (NSString *) jobTitle;
-- (NSString *) department;
-- (NSString *) birthday;
-- (NSString *) note;
-- (NSString *) createDate;
-- (NSString *) modificationDate;
 
 // for an method with record ID as parameter
 - (NSString *) prefix:(NSInteger)recordID;
