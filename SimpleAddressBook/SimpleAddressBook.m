@@ -71,18 +71,30 @@
             [contactFullList setValue:kLastName forKey:@"LASTNAME"];
             [contactFullList setValue:recordId forKey:@"ID"];
             
-            NSArray *linkedRecordsArray = (__bridge NSArray *)ABPersonCopyArrayOfAllLinkedPeople(ref);
+            NSArray *linkedArray = (__bridge NSArray *)ABPersonCopyArrayOfAllLinkedPeople(ref);
+
+            NSMutableArray *array;
+            array = [[NSMutableArray alloc]init];
+            BOOL isDupe = NO;
             
-            NSLog(@"linked %@: %@",recordId,linkedRecordsArray);
-            for( int k = 0 ; k < linkedRecordsArray.count ; k++ ) {
-                NSNumber *lrecord = [NSNumber numberWithInteger: ABRecordGetRecordID((__bridge ABRecordRef)(linkedRecordsArray[k]))];
-                NSLog(@"linked %@: %@",recordId,lrecord);
+            for( int k = 0 ; k < linkedArray.count ; k++ ) {
+                NSString *isLinked = [NSString stringWithFormat:@"%d", ABRecordGetRecordID((__bridge ABRecordRef)(linkedArray[k]))];
+                [array addObject:isLinked];
+                for(NSString *key in [_simpleABSet valueForKey:@"LIST"]) {
+                    NSString *value = [NSString stringWithFormat:@"%@",[key valueForKey:@"ID"]];
+                    if ([value isEqualToString:isLinked]) {
+                        isDupe = YES;
+                        break;
+                    }
+                }
+                
             }
             
-          // [contactFullList setObject:linkedRecordsArray forKey:"LINKED"];
-            
-            [mSets addObject:contactFullList];
-            [_simpleABSet setObject:mSets forKey:@"LIST"];
+            if(!isDupe) {
+                [contactFullList setObject:[array copy] forKey:@"LINKED"];
+                [mSets addObject:contactFullList];
+                [_simpleABSet setObject:mSets forKey:@"LIST"];
+            }
         }
         CFRelease(addressBook);
         CFRelease(source);
