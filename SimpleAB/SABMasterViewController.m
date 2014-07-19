@@ -18,6 +18,8 @@
 
 @implementation SABMasterViewController
 
+@synthesize contactMasterList = _contactMasterList;
+
 - (void)awakeFromNib
 {
     [super awakeFromNib];
@@ -36,7 +38,8 @@
     //NSLog(@"-------------------------");
     //NSLog(@"List: %@",[_simpleAB list]);
     //[_simpleAB list];
-
+    _contactMasterList = [_simpleAB letterList:[_simpleAB list]];
+    NSLog(@"_contactMasterList: %@",_contactMasterList);
     /*
     NSSortDescriptor *nameSort = [[NSSortDescriptor alloc] initWithKey:@"LASTNAME" ascending:YES selector:@selector(compare:)];
     NSArray *sortDescriptors = [NSArray arrayWithObject:nameSort];

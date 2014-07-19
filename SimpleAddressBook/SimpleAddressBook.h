@@ -18,6 +18,7 @@
 - (NSArray *) showList;
 //- (NSArray *) showList:(NSOrderedSet *)sets;
 - (NSInteger) total;
+- (NSMutableOrderedSet *) letterList:(NSMutableOrderedSet *)preLetterList;
 
 //-(void) getRecord:(NSInteger)recordID;
 

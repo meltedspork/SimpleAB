@@ -123,6 +123,22 @@
     return sortedArray;
 }
 
+-(NSMutableOrderedSet *) letterList:(NSMutableOrderedSet *)preLetterList {
+    NSMutableOrderedSet *addLetterList = [[NSMutableOrderedSet alloc] init];
+    if (preLetterList.count > 0) {
+        NSArray *firstLetters = [preLetterList valueForKey:@"HEADER"];
+        
+        [addLetterList addObject:[firstLetters objectAtIndex:0]];
+        for (int i=1; i<firstLetters.count; i++) {
+            if(!([[addLetterList objectAtIndex:(i-1)] isEqual:[firstLetters objectAtIndex:i]])) {
+                [addLetterList addObject:[firstLetters objectAtIndex:i]];
+                //NSLog(@"%@",addLetterList);
+            }
+        }
+    }
+    return addLetterList;
+}
+
 - (NSInteger) total {
     return (long)[[_simpleABSet valueForKeyPath:@"LIST"] count];
 }

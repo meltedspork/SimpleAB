@@ -11,4 +11,6 @@
 
 @interface SABMasterViewController : UITableViewController <UIApplicationDelegate>
 
+@property (strong, nonatomic) NSMutableOrderedSet *contactMasterList;
+
 @end
