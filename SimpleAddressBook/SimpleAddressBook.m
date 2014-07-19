@@ -123,7 +123,7 @@
     return sortedArray;
 }
 
--(NSMutableOrderedSet *) letterList:(NSMutableOrderedSet *)preLetterList {
+-(NSOrderedSet *) letterList:(NSMutableOrderedSet *)preLetterList {
     NSMutableOrderedSet *addLetterList = [[NSMutableOrderedSet alloc] init];
     if (preLetterList.count > 0) {
         NSArray *firstLetters = [preLetterList valueForKey:@"HEADER"];
@@ -136,7 +136,9 @@
             }
         }
     }
-    return addLetterList;
+    NSOrderedSet *sets = [[NSOrderedSet alloc] init];
+    sets = [addLetterList copy];
+    return sets;
 }
 
 - (NSInteger) total {

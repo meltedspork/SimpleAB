@@ -14,11 +14,11 @@
 @property (strong, nonatomic) NSMutableDictionary *simpleABSet;
 @property (strong, nonatomic) NSMutableDictionary *simpleABPerson;
 
-- (NSMutableOrderedSet *) list;
+- (NSOrderedSet *) list;
 - (NSArray *) showList;
 //- (NSArray *) showList:(NSOrderedSet *)sets;
 - (NSInteger) total;
-- (NSMutableOrderedSet *) letterList:(NSMutableOrderedSet *)preLetterList;
+- (NSOrderedSet *) letterList:(NSOrderedSet *)preLetterList;
 
 //-(void) getRecord:(NSInteger)recordID;
 
