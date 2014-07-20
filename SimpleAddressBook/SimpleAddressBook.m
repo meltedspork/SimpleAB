@@ -105,7 +105,7 @@
     }
     NSOrderedSet *sets = [[NSOrderedSet alloc] init];
     sets = [[_simpleABSet valueForKeyPath:@"LIST"] copy];
-    NSLog(@"sets: %@",sets);
+    //NSLog(@"sets: %@",sets);
     return sets;
     //return [_simpleABSet valueForKeyPath:@"LIST"];
 }
