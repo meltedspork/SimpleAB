@@ -299,13 +299,11 @@
     ABMultiValueRef phoneRecord = ABRecordCopyValue([self checkRecordID:recordID],            kABPersonPhoneProperty);
     
     if (ABMultiValueGetCount(phoneRecord) > 0) {
-        for (int i=0; i < ABMultiValueGetCount(phoneRecord); i++) {
-            
-            [phoneNumbers setValue:[[NSString alloc] initWithFormat:@"%@",ABAddressBookCopyLocalizedLabel( ABMultiValueCopyLabelAtIndex( phoneRecord,i))] forKey:[[NSString alloc] initWithFormat:@"%@",ABAddressBookCopyLocalizedLabel( ABMultiValueCopyLabelAtIndex( phoneRecord,i))]];
-            CFRelease(ABAddressBookCopyLocalizedLabel( ABMultiValueCopyLabelAtIndex( phoneRecord,i)));
-            
+        for (int i=0; i < ABMultiValueGetCount(phoneRecord); i++)  {
+            [phoneNumbers setValue:[[NSString alloc] initWithFormat:@"%@",( NSString*)ABMultiValueCopyValueAtIndex(phoneRecord,i)] forKey:[[NSString alloc] initWithFormat:@"%@",ABAddressBookCopyLocalizedLabel(ABMultiValueCopyLabelAtIndex(phoneRecord, i))]];
         }
     }
+    
     
     CFRelease(phoneRecord);
     NSDictionary *phones = [[NSDictionary alloc] init];
