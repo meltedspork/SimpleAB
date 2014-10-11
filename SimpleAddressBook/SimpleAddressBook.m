@@ -54,13 +54,13 @@
         //CFArrayRef source = ABAddressBookCopyArrayOfAllPeople(addressBook);
         
         //NSArray *arr = (__bridge_transfer NSArray *)ABAddressBookCopyArrayOfAllPeopleInSourceWithSortOrdering(addressBook, source, kABPersonSortByLastName);
-        NSArray *arr = (__bridge_transfer NSArray *)ABAddressBookCopyArrayOfAllPeopleInSourceWithSortOrdering(addressBook, nil, kABPersonSortByLastName);
+        NSArray *arr = ( NSArray *)ABAddressBookCopyArrayOfAllPeopleInSourceWithSortOrdering(addressBook, nil, kABPersonSortByLastName);
         
         for( int j = 0 ; j < arr.count ; j++ ) {
             ABRecordRef ref = (__bridge ABRecordRef)[arr objectAtIndex:j];
             
-            NSString* kFirstName = (__bridge_transfer NSString *)ABRecordCopyValue(ref,kABPersonFirstNameProperty);
-            NSString* kLastName = (__bridge_transfer NSString*)ABRecordCopyValue(ref,kABPersonLastNameProperty);
+            NSString* kFirstName = ( NSString *)ABRecordCopyValue(ref,kABPersonFirstNameProperty);
+            NSString* kLastName = ( NSString*)ABRecordCopyValue(ref,kABPersonLastNameProperty);
             NSString* kFirstCharLastName = [[kLastName substringToIndex:1] uppercaseString];
             NSNumber *recordId = [NSNumber numberWithInteger: ABRecordGetRecordID(ref)];
             
@@ -226,71 +226,71 @@
 // returns
 
 - (NSString *) prefix:(NSInteger)recordID {
-    return (__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonPrefixProperty);
+    return ( NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonPrefixProperty);
 }
 
 - (NSString *) firstName:(NSInteger)recordID {
-    return (__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonFirstNameProperty);
+    return ( NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonFirstNameProperty);
 }
 
 - (NSString *) middleName:(NSInteger)recordID {
-    return (__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonMiddleNameProperty);
+    return ( NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonMiddleNameProperty);
 }
 
 - (NSString *) lastName:(NSInteger)recordID {
-    return (__bridge_transfer NSString *)ABRecordCopyValue([self checkRecordID:recordID],kABPersonLastNameProperty);
+    return ( NSString *)ABRecordCopyValue([self checkRecordID:recordID],kABPersonLastNameProperty);
 }
 
 - (NSString *) suffix:(NSInteger)recordID {
-    return (__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonSuffixProperty);
+    return ( NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonSuffixProperty);
 }
 
 - (NSString *) nickName:(NSInteger)recordID {
-    return (__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonNicknameProperty);
+    return ( NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonNicknameProperty);
 }
 
 - (NSString *) firstNamePhonetic:(NSInteger)recordID {
-    return (__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonFirstNamePhoneticProperty);
+    return ( NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonFirstNamePhoneticProperty);
 }
 
 - (NSString *) middleNamePhonetic:(NSInteger)recordID {
-    return (__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonMiddleNamePhoneticProperty);
+    return ( NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonMiddleNamePhoneticProperty);
 }
 
 - (NSString *) lastNamePhonetic:(NSInteger)recordID {
-    return (__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonLastNamePhoneticProperty);
+    return ( NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonLastNamePhoneticProperty);
 }
 
 - (NSString *) organization:(NSInteger)recordID {
-    return (__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonOrganizationProperty);
+    return ( NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonOrganizationProperty);
 }
 
 - (NSString *) jobTitle:(NSInteger)recordID {
-    return (__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonJobTitleProperty);
+    return ( NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonJobTitleProperty);
 }
 
 - (NSString *) department:(NSInteger)recordID {
-    return (__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonDepartmentProperty);
+    return ( NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonDepartmentProperty);
 }
 
 - (NSString *) birthday:(NSInteger)recordID {
-    return (__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonBirthdayProperty);
+    return ( NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonBirthdayProperty);
 }
 
 - (NSString *) note:(NSInteger)recordID {
-    return (__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonNoteProperty);
+    return ( NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonNoteProperty);
 }
 
 - (NSString *) createDate:(NSInteger)recordID {
-    return (__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonCreationDateProperty);
+    return ( NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonCreationDateProperty);
 }
 
 - (NSString *) modificationDate:(NSInteger)recordID {
-    return (__bridge_transfer NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonModificationDateProperty);
+    return ( NSString*)ABRecordCopyValue([self checkRecordID:recordID],kABPersonModificationDateProperty);
 }
 
 - (UIImage *) image:(NSInteger)recordID {
-    return [UIImage imageWithData:(__bridge_transfer NSData *)ABPersonCopyImageData([self checkRecordID:recordID])];
+    return [UIImage imageWithData:( NSData *)ABPersonCopyImageData([self checkRecordID:recordID])];
 }
 
 - (NSDictionary *) phoneNumber:(NSInteger)recordID {
@@ -321,7 +321,7 @@
     if (ABMultiValueGetCount(ABRecordCopyValue([self checkRecordID:recordID],kABPersonEmailProperty)) > 0) {
         for (int i=0; i < ABMultiValueGetCount(emailRecord); i++) {
 
-            [emails setValue:[[NSString alloc] initWithFormat:@"%@",ABAddressBookCopyLocalizedLabel(ABMultiValueCopyLabelAtIndex(emailRecord,i))] forKey:[[NSString alloc] initWithFormat:@"%@",(__bridge_transfer NSString*)ABMultiValueCopyValueAtIndex(emailRecord, i)]];
+            [emails setValue:[[NSString alloc] initWithFormat:@"%@",ABAddressBookCopyLocalizedLabel(ABMultiValueCopyLabelAtIndex(emailRecord,i))] forKey:[[NSString alloc] initWithFormat:@"%@",( NSString*)ABMultiValueCopyValueAtIndex(emailRecord, i)]];
         }
     }
 
@@ -342,25 +342,25 @@
             
             CFDictionaryRef dictRef = ABMultiValueCopyValueAtIndex(addressRecord,i);
             
-            if ((__bridge_transfer NSString*)CFDictionaryGetValue(dictRef, kABPersonAddressStreetKey) != nil) {
+            if (( NSString*)CFDictionaryGetValue(dictRef, kABPersonAddressStreetKey) != nil) {
                 
-                [fullAddress setValue:[[NSString alloc] initWithFormat:@"%@", (__bridge_transfer NSString*)CFDictionaryGetValue(dictRef, kABPersonAddressStreetKey)] forKey:@"STREET"];
+                [fullAddress setValue:[[NSString alloc] initWithFormat:@"%@", ( NSString*)CFDictionaryGetValue(dictRef, kABPersonAddressStreetKey)] forKey:@"STREET"];
             }
-            if ((__bridge_transfer NSString*)CFDictionaryGetValue(dictRef, kABPersonAddressCityKey) != nil) {
+            if (( NSString*)CFDictionaryGetValue(dictRef, kABPersonAddressCityKey) != nil) {
                 
-                [fullAddress setValue:[[NSString alloc] initWithFormat:@"%@",(__bridge_transfer NSString*)CFDictionaryGetValue(dictRef,kABPersonAddressCityKey)] forKey:@"CITY"];
+                [fullAddress setValue:[[NSString alloc] initWithFormat:@"%@",( NSString*)CFDictionaryGetValue(dictRef,kABPersonAddressCityKey)] forKey:@"CITY"];
             }
-            if ((__bridge_transfer NSString*)CFDictionaryGetValue(dictRef, kABPersonAddressStateKey) != nil) {
+            if (( NSString*)CFDictionaryGetValue(dictRef, kABPersonAddressStateKey) != nil) {
         
-                [fullAddress setValue:[[NSString alloc] initWithFormat:@"%@",(__bridge_transfer NSString*)CFDictionaryGetValue(dictRef, kABPersonAddressStateKey)] forKey:@"STATE"];
+                [fullAddress setValue:[[NSString alloc] initWithFormat:@"%@",( NSString*)CFDictionaryGetValue(dictRef, kABPersonAddressStateKey)] forKey:@"STATE"];
             }
-            if ((__bridge_transfer NSString*)CFDictionaryGetValue(dictRef, kABPersonAddressZIPKey) != nil) {
+            if (( NSString*)CFDictionaryGetValue(dictRef, kABPersonAddressZIPKey) != nil) {
                 
-                [fullAddress setValue:[[NSString alloc] initWithFormat:@"%@",(__bridge_transfer NSString*)CFDictionaryGetValue(dictRef, kABPersonAddressZIPKey)] forKey:@"ZIP"];
+                [fullAddress setValue:[[NSString alloc] initWithFormat:@"%@",( NSString*)CFDictionaryGetValue(dictRef, kABPersonAddressZIPKey)] forKey:@"ZIP"];
             }
-            if ((__bridge_transfer NSString*)CFDictionaryGetValue(dictRef, kABPersonAddressCountryKey) != nil) {
+            if (( NSString*)CFDictionaryGetValue(dictRef, kABPersonAddressCountryKey) != nil) {
                 
-                [fullAddress setValue:[[NSString alloc] initWithFormat:@"%@",(__bridge_transfer NSString*)CFDictionaryGetValue(dictRef, kABPersonAddressCountryKey)] forKey:@"COUNTRY"];
+                [fullAddress setValue:[[NSString alloc] initWithFormat:@"%@",( NSString*)CFDictionaryGetValue(dictRef, kABPersonAddressCountryKey)] forKey:@"COUNTRY"];
             }
             //NSLog(@"fullAddress:%@",fullAddress);
    
