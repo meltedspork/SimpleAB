@@ -304,7 +304,6 @@
         }
     }
     
-    
     CFRelease(phoneRecord);
     NSDictionary *phones = [[NSDictionary alloc] init];
     phones = [phoneNumbers copy];
