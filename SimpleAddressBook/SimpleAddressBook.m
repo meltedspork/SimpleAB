@@ -300,7 +300,7 @@
     
     if (ABMultiValueGetCount(phoneRecord) > 0) {
         for (int i=0; i < ABMultiValueGetCount(phoneRecord); i++)  {
-            [phoneNumbers setValue:[[NSString alloc] initWithFormat:@"%@",( NSString*)ABMultiValueCopyValueAtIndex(phoneRecord,i)] forKey:[[NSString alloc] initWithFormat:@"%@",ABAddressBookCopyLocalizedLabel(ABMultiValueCopyLabelAtIndex(phoneRecord, i))]];
+            [phoneNumbers setValue:[[NSString alloc] initWithFormat:@"%@",ABAddressBookCopyLocalizedLabel(ABMultiValueCopyLabelAtIndex(phoneRecord,i))] forKey:[[NSString alloc] initWithFormat:@"%@",( NSString*)ABMultiValueCopyValueAtIndex(phoneRecord, i)]];
         }
     }
     
@@ -317,7 +317,6 @@
     
     if (ABMultiValueGetCount(ABRecordCopyValue([self checkRecordID:recordID],kABPersonEmailProperty)) > 0) {
         for (int i=0; i < ABMultiValueGetCount(emailRecord); i++) {
-
             [emails setValue:[[NSString alloc] initWithFormat:@"%@",ABAddressBookCopyLocalizedLabel(ABMultiValueCopyLabelAtIndex(emailRecord,i))] forKey:[[NSString alloc] initWithFormat:@"%@",( NSString*)ABMultiValueCopyValueAtIndex(emailRecord, i)]];
         }
     }
