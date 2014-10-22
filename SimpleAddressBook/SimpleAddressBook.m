@@ -61,6 +61,7 @@
             
             NSString* kFirstName = ( NSString *)ABRecordCopyValue(ref,kABPersonFirstNameProperty);
             NSString* kLastName = ( NSString*)ABRecordCopyValue(ref,kABPersonLastNameProperty);
+            NSString* kLastNameSort = [kLastName uppercaseString];
             NSString* kFirstCharLastName = [[kLastName substringToIndex:1] uppercaseString];
             NSNumber *recordId = [NSNumber numberWithInteger: ABRecordGetRecordID(ref)];
             
@@ -69,6 +70,7 @@
             [contactFullList setValue:kFirstCharLastName forKey:@"HEADER"];
             [contactFullList setValue:kFirstName forKey:@"FIRSTNAME"];
             [contactFullList setValue:kLastName forKey:@"LASTNAME"];
+            [contactFullList setValue:kLastNameSort forKey:@"LASTNAMESORT"];
             [contactFullList setValue:recordId forKey:@"ID"];
             
             NSArray *linkedArray = (__bridge NSArray *)ABPersonCopyArrayOfAllLinkedPeople(ref);
@@ -117,7 +119,7 @@
         #pragma unused(list)
     }
     //NSLog(@"%@",[_simpleABSet valueForKeyPath:@"LIST"]);
-    NSSortDescriptor *nameSort = [[NSSortDescriptor alloc] initWithKey:@"LASTNAME" ascending:YES selector:@selector(compare:)];
+    NSSortDescriptor *nameSort = [[NSSortDescriptor alloc] initWithKey:@"LASTNAMESORT" ascending:YES selector:@selector(compare:)];
     NSArray *sortDescriptors = [NSArray arrayWithObject:nameSort];
     NSArray *sortedArray = [[_simpleABSet valueForKeyPath:@"LIST"] sortedArrayUsingDescriptors:sortDescriptors];
     return sortedArray;
